@@ -12,7 +12,6 @@ namespace Danse.Models.AccessBd
     public class UserRepository : IUserRepository
     {
         private string connexion = "server=da34191b-e4b4-47a0-8a62-a54e00b8c4d7.mysql.sequelizer.com;database=dbda34191be4b447a08a62a54e00b8c4d7;uid=prphyjdncwgpetdn;pwd=fVbDN7YdpYpoUYH7WQSK4HsXaj3ACfm4gqnkD8FLXGdhg3TosrWCbELEBkCCdxHi";
-
         public UserRepository()
         {
 
@@ -150,7 +149,7 @@ namespace Danse.Models.AccessBd
                 return false;
             }
 
-            string query = "UPDATE user SET first_name=@firstname, last_name=@lastname,gender=@gender,birth_date=@birth,email=@email,phone=@phone,pwd=@pwd,image=@image,status=@status";
+            string query = "UPDATE user SET first_name=@firstname, last_name=@lastname,gender=@gender,birth_date=@birth,email=@email,phone=@phone,pwd=@pwd,image=@image,status=@status WHERE id=@userid";
 
             List<MySqlParameter> parms = new List<MySqlParameter>();
             parms.Add(new MySqlParameter("firstname", user.FirstName));
@@ -162,6 +161,7 @@ namespace Danse.Models.AccessBd
             parms.Add(new MySqlParameter("pwd", user.Password));
             parms.Add(new MySqlParameter("image", user.Image));
             parms.Add(new MySqlParameter("status", user.Status));
+            parms.Add(new MySqlParameter("userid", user.UserId));
 
             MySqlHelper.ExecuteNonQuery(connexion, query, parms.ToArray());
 

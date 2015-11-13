@@ -11,6 +11,6 @@ namespace Danse.Models.Entities
         [ScaffoldColumn(false)]
         public int CategorieId { get; set; }
         [Required]
-        public string name { get; set; }
+        public string Name { get; set; }
     }
 }
