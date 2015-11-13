@@ -193,8 +193,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccessBd\CategorieRepository.cs" />
+    <Compile Include="Models\AccessBd\LessonRepository.cs" />
+    <Compile Include="Models\AccessBd\MessengerRepository.cs" />
+    <Compile Include="Models\AccessBd\UserRepository.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Entities\Categorie.cs" />
+    <Compile Include="Models\Entities\Lesson.cs" />
+    <Compile Include="Models\Entities\Messenger.cs" />
+    <Compile Include="Models\Entities\User.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Interfaces\ICategorieRepository.cs" />
+    <Compile Include="Models\Interfaces\ILessonRepository.cs" />
+    <Compile Include="Models\Interfaces\IMessengerRepository.cs" />
+    <Compile Include="Models\Interfaces\IUserRepository.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
