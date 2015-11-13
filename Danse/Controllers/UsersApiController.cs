@@ -35,6 +35,18 @@ namespace Danse.Controllers
         }
 
 
+        [HttpGet]
+        [Route("api/v1/lesson/user/{id}")]
+        public string getLessonUser(int id)
+        {
+            ILessonRepository user = new LessonRepository();
+            result = user.GetLessonByUser(id);
+
+            var json = new JavaScriptSerializer().Serialize(result);
+
+            return json;
+        }
+
 
 
 
