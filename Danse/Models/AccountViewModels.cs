@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Danse.Models
@@ -79,6 +80,35 @@ namespace Danse.Models
         [Display(Name = "Confirmer le mot de passe ")]
         [Compare("Password", ErrorMessage = "Le mot de passe et le mot de passe de confirmation ne correspondent pas.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "La chaîne {0} doit comporter au moins {2} caractères.", MinimumLength = 2)]
+        [DataType(DataType.Text)]
+        [Display(Name = "Nom")]
+        public string lastname { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "La chaîne {0} doit comporter au moins {2} caractères.", MinimumLength = 2)]
+        [DataType(DataType.Text)]
+        [Display(Name = "Prenom")]
+        public string firstname { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "Date de naissance")]
+        public string birthday { get; set; }
+
+        [Required]
+       // [DataType(DataType.)]
+        [Display(Name = "Photo de profil")]
+        public string profilePicture { get; set; }
+
+        //Vérification de la réponse de l'utilisateur pour la captcha
+        [JsonProperty("success")]
+        public string Success { get; set; }
+
+        [JsonProperty("error-codes")]
+        public List<string> ErrorCodes { get; set; }
     }
 
     public class ResetPasswordViewModel
