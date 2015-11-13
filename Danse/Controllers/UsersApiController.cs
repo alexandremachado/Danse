@@ -64,17 +64,7 @@ namespace Danse.Controllers
             return json;
         }
 
-        [HttpGet]
-        [Route("api/v1/lesson/book/list/{id}/{page}")]
-        public string getLessonBookListbyUser(int id, int page)
-        {
-            ILessonRepository user = new LessonRepository();
-            result = user.GetAllLessonByUser(id, page);
-
-            var json = new JavaScriptSerializer().Serialize(result);
-
-            return json;
-        }
+        
 
 
 
