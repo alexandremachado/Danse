@@ -13,5 +13,6 @@ namespace Danse.Models.Interfaces
         bool Remove(int id);
         bool Update(Lesson user);
         bool Add(Lesson user);
+        IEnumerable<Lesson> GetFilter(DateTime start, DateTime end, int zip);
     }
 }

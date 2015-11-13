@@ -38,12 +38,11 @@ namespace Danse.Models.AccessBd
             }
 
             return cats;
-
         }
 
         public Categorie Get(int id)
         {
-            string query = "SELECT id,name FROM category WHERE id="+id;
+            string query = "SELECT id,name FROM category WHERE id=" + id;
             Categorie cat = new Categorie();
             using (MySqlDataReader reader = MySqlHelper.ExecuteReader(connexion, query))
             {
@@ -73,7 +72,7 @@ namespace Danse.Models.AccessBd
             string query = "INSERT INTO category (name) VALUES(@name)";
             List<MySqlParameter> parms = new List<MySqlParameter>();
             parms.Add(new MySqlParameter("name", cat.Name));
-           
+
 
             MySqlHelper.ExecuteNonQuery(connexion, query, parms.ToArray());
 
@@ -91,3 +90,4 @@ namespace Danse.Models.AccessBd
             return false;
         }
     }
+}

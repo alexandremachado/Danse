@@ -27,7 +27,7 @@ namespace Danse.Models.Entities
         [Required]
         public string Adresse { get; set; }
         [Required]
-        public string ZipCode { get; set; }
+        public int ZipCode { get; set; }
         [Required]
         public float Latitude { get; set; }
         [Required]
