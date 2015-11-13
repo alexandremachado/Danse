@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Danse.Controllers
 {
@@ -10,6 +6,9 @@ namespace Danse.Controllers
     {
         public ActionResult Index()
         {
+            Data.Data MyData = new Data.Data();
+            MyData.ExecuterRequete("ma requete");
+            
             return View();
         }
 
