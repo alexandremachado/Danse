@@ -76,7 +76,17 @@ namespace Danse.Controllers
             return json;
         }
 
+        [HttpGet]
+        [Route("api/v1/messenger/list/{id}")]
+        public string getMessengerList(int id)
+        {
+            IMessengerRepository messenger = new MessengerRepository();
+            result = messenger.GetList(id);
 
+            var json = new JavaScriptSerializer().Serialize(result);
+
+            return json;
+        }
 
 
 
