@@ -22,7 +22,18 @@ namespace Danse.Controllers
             return json;
         }
 
-       
+        [HttpGet]
+        [Route("api/v1/user/private/{id}")]
+        public string getPrivateUser(int id)
+        {
+            IUserRepository user = new UserRepository();
+            result = user.GetPrivate(id);
+
+            var json = new JavaScriptSerializer().Serialize(result);
+
+            return json;
+        }
+
 
 
 
