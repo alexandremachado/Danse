@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Danse.Models.AccessBd;
+using Danse.Models.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -15,7 +17,7 @@ namespace Danse.Controllers
         public string getPublicUser(int id)
         {
             IUserRepository user = new UserRepository();
-            result = user.GetPublic(id);
+            var result = user.GetPublic(id);
 
             var json = new JavaScriptSerializer().Serialize(result);
 
@@ -27,7 +29,7 @@ namespace Danse.Controllers
         public string getPrivateUser(int id)
         {
             IUserRepository user = new UserRepository();
-            result = user.GetPrivate(id);
+            var result = user.GetPrivate(id);
 
             var json = new JavaScriptSerializer().Serialize(result);
 
@@ -39,8 +41,8 @@ namespace Danse.Controllers
         [Route("api/v1/lesson/user/{id}")]
         public string getLessonUser(int id)
         {
-            ILessonRepository user = new LessonRepository();
-            result = user.GetLessonByUser(id);
+            ILessonRepository lesson = new LessonRepository();
+            var result = lesson.GetLessonByUser(id);
 
             var json = new JavaScriptSerializer().Serialize(result);
 
@@ -56,8 +58,8 @@ namespace Danse.Controllers
             DateTime startDate = Convert.ToDateTime(start);
             DateTime endDate = Convert.ToDateTime(end);
 
-            ILessonRepository user = new LessonRepository();
-            result = user.GetFilter(startDate, endDate, zip);
+            ILessonRepository lesson = new LessonRepository();
+            var result = lesson.GetFilter(startDate, endDate, zip);
 
             var json = new JavaScriptSerializer().Serialize(result);
 
@@ -68,8 +70,8 @@ namespace Danse.Controllers
         [Route("api/v1/lesson/book/{id}/{page}")]
         public string getLessonBookList(int id, int page)
         {
-            ILessonRepository user = new LessonRepository();
-            result = user.GetAllBookByLesson(id, page);
+            ILessonRepository lesson = new LessonRepository();
+            var result = lesson.GetAllBookByLesson(id, page);
 
             var json = new JavaScriptSerializer().Serialize(result);
 
@@ -81,7 +83,7 @@ namespace Danse.Controllers
         public string getMessengerList(int id)
         {
             IMessengerRepository messenger = new MessengerRepository();
-            result = messenger.GetList(id);
+            var result = messenger.GetList(id);
 
             var json = new JavaScriptSerializer().Serialize(result);
 
