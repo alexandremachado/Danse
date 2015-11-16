@@ -17,6 +17,9 @@ namespace Danse.Models.Entities
         [Required]
         public bool Status { get; set; }
 
+        [Required]
+        public int lessonid { get; set; }
+
         public virtual User Author { get; set; }
     }
 }

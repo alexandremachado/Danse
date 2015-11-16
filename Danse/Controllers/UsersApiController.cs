@@ -50,7 +50,7 @@ namespace Danse.Controllers
 
         [HttpGet]
         [Route("api/v1/lesson/filter/{start}/{end}/{zip}")]
-        public string getLessonFilter(string start, string end, string zip)
+        public string getLessonFilter(string start, string end, int zip)
         {
             DateTime startDate = Convert.ToDateTime(start);
             DateTime endDate = Convert.ToDateTime(end);
