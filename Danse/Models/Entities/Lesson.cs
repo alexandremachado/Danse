@@ -33,10 +33,31 @@ namespace Danse.Models.Entities
         [Required]
         public float Longitude { get; set; }
 
-        public virtual Collection<User> Participant { get; set; }
         public virtual User Author {get; set;}
         public virtual Collection<Messenger> Message { get; set; } 
         public virtual Categorie Categorie { get; set; }
 
+        public Lesson()
+        {
+
+        }
+
+        public Lesson(string description, DateTime start,DateTime end, int free,int booked, float price, string title,string adresse, int code,float latitude, float longitude, User author,Collection<Messenger> messages, Categorie cat)
+        {
+            this.description = description;
+            this.DateEnd = end;
+            this.DateStart = start;
+            this.NumberFree = free;
+            this.NumberBooked = booked;
+            this.Price = price;
+            this.Title = title;
+            this.Adresse = adresse;
+            this.ZipCode = code;
+            this.Latitude = latitude;
+            this.Longitude = longitude;
+            this.Author = author;
+            this.Message = messages;
+            this.Categorie = cat;
+        }
     }
 }

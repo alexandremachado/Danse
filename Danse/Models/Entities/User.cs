@@ -25,5 +25,24 @@ namespace Danse.Models.Entities
         public string Password { get; set; }
         public string Image { get; set; }
         public string Status { get; set; }
+
+        public User()
+        {
+
+        }
+
+
+        public User(string first, string last, bool Gender, DateTime BirthDate,string email,string phone,string password,string image,string status)
+        {
+            this.FirstName = first;
+            this.LastName = last;
+            this.Gender = Gender;
+            this.BirthDate = BirthDate;
+            this.Email = email;
+            this.Phone = phone;
+            this.Password = password;
+            this.Image = image;
+            this.Status = status;
+        }
     }
 }
