@@ -36,7 +36,6 @@ namespace Danse.Controllers
             return json;
         }
 
-
         [HttpGet]
         [Route("api/v1/lesson/user/{id}")]
         public string getLessonUser(int id)
@@ -48,8 +47,6 @@ namespace Danse.Controllers
 
             return json;
         }
-
-
 
         [HttpGet]
         [Route("api/v1/lesson/filter/{start}/{end}/{zip}")]
@@ -90,13 +87,20 @@ namespace Danse.Controllers
             return json;
         }
 
+        [HttpPost]
+        [Route("api/v1/messenger/list/{id}")]
+        public string getMessengerList(int id)
+        {
+            var ici = HttpContent.Current.Cache["var"];
+            var la = Requesté
+            IMessengerRepository messenger = new MessengerRepository();
+            var result = messenger.GetList(id);
 
+            var json = new JavaScriptSerializer().Serialize(result);
 
-
-
-
-
-
+            return json;
+        }
+        
 
     }
 }
