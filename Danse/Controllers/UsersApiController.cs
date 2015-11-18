@@ -84,7 +84,7 @@ namespace Danse.Controllers
         public string GetMessengerList(int id)
         {
             MessengerRepository messenger = new MessengerRepository();
-            var result = messenger.GetList(id);
+            var result = messenger.GetAllByLesson(id);
             var json = new JavaScriptSerializer().Serialize(result);
             return json;
         }
