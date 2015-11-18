@@ -29,7 +29,7 @@ namespace Danse.Controllers
 
         [HttpGet]
         [Route("api/v1/messenger/list/{id}")]
-        public string GetMessengerList(int id)
+        public string GetMessengerListId(int id)
         {
             MessengerRepository messenger = new MessengerRepository();
             var result = messenger.Get(id);
