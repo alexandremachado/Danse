@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Script.Serialization;
 
+
 namespace Danse.Controllers
 {
 
@@ -18,7 +19,7 @@ namespace Danse.Controllers
 
         [HttpGet]
         [Route("api/v1/user/public/{id}")]
-        public string Get(int id)
+        public string GetUserPublic(int id)
         {
             IUserRepository user = new UserRepository();
             var result = user.GetPublic(id);
@@ -28,17 +29,17 @@ namespace Danse.Controllers
 
         [HttpGet]
         [Route("api/v1/messenger/list/{id}")]
-        public string Get(int id)
+        public string GetMessengerList(int id)
         {
-            IMessengerRepository messenger = new IMessengerRepository();
-            var result = messenger.GetList(id);
+            MessengerRepository messenger = new MessengerRepository();
+            var result = messenger.Get(id);
             var json = new JavaScriptSerializer().Serialize(result);
             return json;
         }
 
         [HttpGet]
         [Route("api/v1/user/private/{id}")]
-        public string Get(int id)
+        public string GetUserPrivate(int id)
         {
             IUserRepository user = new UserRepository();
             var result = user.GetPrivate(id);
@@ -48,7 +49,7 @@ namespace Danse.Controllers
 
         [HttpGet]
         [Route("api/v1/lesson/user/{id}")]
-        public string Get(int id)
+        public string GetLessonUser(int id)
         {
             ILessonRepository lesson = new LessonRepository();
             var result = lesson.GetLessonByUser(id);
@@ -58,7 +59,7 @@ namespace Danse.Controllers
 
         [HttpGet]
         [Route("api/v1/lesson/filter/{start}/{end}/{zip}")]
-        public string Get(string start, string end, string zip)
+        public string GetLessonFilter(string start, string end, string zip)
         {
             DateTime startDate = Convert.ToDateTime(start);
             DateTime endDate = Convert.ToDateTime(end);
@@ -70,7 +71,7 @@ namespace Danse.Controllers
 
         [HttpGet]
         [Route("api/v1/lesson/book/{id}/{page}")]
-        public string Get(int id, int page)
+        public string GetLessonBook(int id, int page)
         {
             ILessonRepository lesson = new LessonRepository();
             var result = lesson.GetAllBookByLesson(id, page);
@@ -80,9 +81,9 @@ namespace Danse.Controllers
 
         [HttpGet]
         [Route("api/v1/messenger/list/{id}")]
-        public string Get(int id)
+        public string GetMessengerList(int id)
         {
-            IMessengerRepository messenger = new MessengerRepository();
+            MessengerRepository messenger = new MessengerRepository();
             var result = messenger.GetList(id);
             var json = new JavaScriptSerializer().Serialize(result);
             return json;
@@ -90,14 +91,14 @@ namespace Danse.Controllers
 
         [HttpPost]
         [Route("api/v1/user/create")]
-        public HttpResponseMessage Post(
+        public HttpResponseMessage PostUserCreate(
             [FromBody] string first_name,
             [FromBody] string last_name,
             [FromBody] string gender,
             [FromBody] DateTime birth_date,
             [FromBody] string email,
             [FromBody] string phone,
-            [FromBody] unknown image,
+            [FromBody] string image
              )
         {
             IUserRepository user = new UserRepository();
@@ -107,14 +108,14 @@ namespace Danse.Controllers
 
         [HttpPost]
         [Route("api/v1/user/update")]
-        public HttpResponseMessage Post(
+        public HttpResponseMessage PostUserUpdate(
             [FromBody] string first_name,
             [FromBody] string last_name,
             [FromBody] string gender,
             [FromBody] DateTime birth_date,
             [FromBody] string email,
             [FromBody] string phone,
-            [FromBody] unknown image
+            [FromBody] string image
              )
         {
             IUserRepository user = new UserRepository();
@@ -124,7 +125,7 @@ namespace Danse.Controllers
 
         [HttpPost]
         [Route("api/v1/user/delete")]
-        public HttpResponseMessage Post([FromBody] int id)
+        public HttpResponseMessage PostUserDelete([FromBody] int id)
         {
             IUserRepository user = new UserRepository();
             var result = user.Delete(id);
@@ -133,7 +134,7 @@ namespace Danse.Controllers
 
         [HttpPost]
         [Route("api/v1/lesson/create")]
-        public HttpResponseMessage Post(
+        public HttpResponseMessage PostLessonCreate(
             [FromBody] string description,
             [FromBody] DateTime end_date,
             [FromBody] DateTime start_date,
@@ -152,7 +153,7 @@ namespace Danse.Controllers
 
         [HttpPost]
         [Route("api/v1/lesson/update")]
-        public HttpResponseMessage Post(
+        public HttpResponseMessage PostLessonUpdate(
             [FromBody] string description,
             [FromBody] DateTime end_date,
             [FromBody] DateTime start_date,
@@ -171,7 +172,7 @@ namespace Danse.Controllers
 
         [HttpPost]
         [Route("api/v1/lesson/delete")]
-        public HttpResponseMessage Post([FromBody] int id)
+        public HttpResponseMessage PostLessonDelete([FromBody] int id)
         {
             ILessonRepository lesson = new LessonRepository();
             var result = lesson.Delete(id);
@@ -180,7 +181,7 @@ namespace Danse.Controllers
 
         [HttpPost]
         [Route("api/v1/lesson/book/create")]
-        public HttpResponseMessage Post(
+        public HttpResponseMessage PostLessonBookCreate(
             [FromBody] string description,
             [FromBody] DateTime end_date,
             [FromBody] DateTime start_date,
@@ -198,13 +199,14 @@ namespace Danse.Controllers
 
         [HttpPost]
         [Route("api/v1/messenger/send")]
-        public HttpResponseMessage Post(
+        public HttpResponseMessage PostMessengerSend(
+            [FromBody] int id,
             [FromBody] string subject,
             [FromBody] string message
             )
         {
-            IMessengerRepository messenger = new MessengerRepository();
-            var result = messenger.Add(subject, message);
+            MessengerRepository messenger = new MessengerRepository();
+            var result = messenger.Add(id, subject, message);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
