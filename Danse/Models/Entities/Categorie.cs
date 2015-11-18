@@ -12,5 +12,15 @@ namespace Danse.Models.Entities
         public int CategorieId { get; set; }
         [Required]
         public string Name { get; set; }
+
+        public Categorie()
+        {
+            
+        }
+
+        public Categorie(string name)
+        {
+            this.Name = name;
+        }
     }
 }
