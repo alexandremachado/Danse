@@ -164,11 +164,12 @@ namespace Danse.Controllers
             [FromBody] float price,
             [FromBody] int category,
             [FromBody] string title,
+            [FromBody] string zip,
             [FromBody] string address
              )
         {
             ILessonRepository lesson = new LessonRepository();
-            var result = lesson.Update(description, end_date, start_date, nb_free, nb_blocked, price, category, title, address);
+            var result = lesson.Update(new Lesson(idUser, description, start_date, end_date, nb_free, nb_blocked, price, category, title, zip, address));
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
