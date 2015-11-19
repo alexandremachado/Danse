@@ -119,14 +119,15 @@ namespace Danse.Models.AccessBd
             string query = "INSERT INTO user (first_name,last_name,gender,birth_date,email,phone,pwd,image) VALUES (@first_name,@last_name,@gender,@birth,@email,@phone,@pwd,@image)";
 
             List<MySqlParameter> parms = new List<MySqlParameter>();
-            parms.Add(new MySqlParameter("email", user.Email));
-            parms.Add(new MySqlParameter("pwd", user.Password));
+            parms.Add(new MySqlParameter("first_name", user.FirstName));
+            parms.Add(new MySqlParameter("last_name", user.LastName));
             parms.Add(new MySqlParameter("gender", user.Gender));
             parms.Add(new MySqlParameter("birth", user.BirthDate));
+            parms.Add(new MySqlParameter("email", user.Email));
             parms.Add(new MySqlParameter("phone", user.Phone));
+            parms.Add(new MySqlParameter("pwd", user.Password));
             parms.Add(new MySqlParameter("image", user.Image));
-            parms.Add(new MySqlParameter("firstName", user.FirstName));
-            parms.Add(new MySqlParameter("lastName", user.LastName));
+            
 
             MySqlHelper.ExecuteNonQuery(connexion, query, parms.ToArray());
 
