@@ -2,6 +2,7 @@
 
 using Danse.Models.AccessBd;
 using Danse.Models.Interfaces;
+using Danse.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -154,13 +155,14 @@ namespace Danse.Controllers
         [HttpPost]
         [Route("api/v1/lesson/update")]
         public HttpResponseMessage PostLessonUpdate(
+            [FromBody] int idUser,
             [FromBody] string description,
             [FromBody] DateTime end_date,
             [FromBody] DateTime start_date,
             [FromBody] int nb_free,
             [FromBody] int nb_blocked,
             [FromBody] float price,
-            [FromBody] string category,
+            [FromBody] int category,
             [FromBody] string title,
             [FromBody] string address
              )
@@ -182,18 +184,13 @@ namespace Danse.Controllers
         [HttpPost]
         [Route("api/v1/lesson/book/create")]
         public HttpResponseMessage PostLessonBookCreate(
-            [FromBody] string description,
-            [FromBody] DateTime end_date,
-            [FromBody] DateTime start_date,
-            [FromBody] int nb_free,
-            [FromBody] float price,
-            [FromBody] string category,
-            [FromBody] string title,
-            [FromBody] string address
+            [FromBody] int idUser,
+            [FromBody] int idLesson
              )
         {
+
             ILessonRepository lesson = new LessonRepository();
-            var result = lesson.Book(description, end_date, start_date, nb_free, price, category, title, address);
+            var result = lesson.Book(idUser, idLesson);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
@@ -201,12 +198,14 @@ namespace Danse.Controllers
         [Route("api/v1/messenger/send")]
         public HttpResponseMessage PostMessengerSend(
             [FromBody] int id,
+            [FromBody] int user_id,
             [FromBody] string subject,
             [FromBody] string message
             )
         {
+            Messenger userMessenge = new Messenger(subject,  message, id, user_id);
             MessengerRepository messenger = new MessengerRepository();
-            var result = messenger.Add(id, subject, message);
+            var result = messenger.Add(userMessenge);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
