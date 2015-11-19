@@ -35,6 +35,8 @@ namespace Danse.Models.Entities
 
         public int userid { get; set; }
 
+        public int idcat { get; set; }
+
         public virtual User Author {get; set;}
         public virtual Collection<Messenger> Message { get; set; } 
         public virtual Categorie Categorie { get; set; }
@@ -44,7 +46,7 @@ namespace Danse.Models.Entities
 
         }
 
-        public Lesson(string description, DateTime start,DateTime end, int free,int booked, float price, string title,string adresse, string code,float latitude, float longitude, int userid,Collection<Messenger> messages, Categorie cat)
+        public Lesson(string description, DateTime start,DateTime end, int free,int booked, float price, string title,string adresse, string code, int userid, int  idcat)
         {
             this.description = description;
             this.DateEnd = end;
@@ -55,11 +57,8 @@ namespace Danse.Models.Entities
             this.Title = title;
             this.Adresse = adresse;
             this.ZipCode = code;
-            this.Latitude = latitude;
-            this.Longitude = longitude;
             this.userid = userid;
-            this.Message = messages;
-            this.Categorie = cat;
+            this.idcat = idcat;
         }
     }
 }
