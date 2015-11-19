@@ -138,14 +138,16 @@ namespace Danse.Controllers
         [HttpPost]
         [Route("api/v1/lesson/create")]
         public HttpResponseMessage PostLessonCreate(
+            [FromBody] int idUser,
             [FromBody] string description,
             [FromBody] DateTime end_date,
             [FromBody] DateTime start_date,
             [FromBody] int nb_free,
             [FromBody] int nb_blocked,
             [FromBody] float price,
-            [FromBody] string category,
+            [FromBody] int category,
             [FromBody] string title,
+            [FromBody] string zip,
             [FromBody] string address
              )
         {
