@@ -25,7 +25,6 @@ namespace Danse.Models.Entities
         [Required]
         public string Password { get; set; }
         public string Image { get; set; }
-        public HttpPostedFileBase TrueImage { get; set; }
         public string Status { get; set; }
 
         public User()
@@ -34,7 +33,7 @@ namespace Danse.Models.Entities
         }
 
 
-        public User(string first, string last, bool Gender, DateTime BirthDate,string email,string phone,string password, HttpPostedFileBase image,string status)
+        public User(string first, string last, bool Gender, DateTime BirthDate,string email,string phone,string password, string image,string status)
         {
             this.FirstName = first;
             this.LastName = last;
@@ -44,15 +43,7 @@ namespace Danse.Models.Entities
             this.Phone = phone;
             this.Password = password;
             this.Status = status;
-
-            if (image != null && image.ContentLength > 0)
-            {
-                var fileName = Path.GetFileName(image.FileName);
-                var path = Path.Combine("../../Images/", fileName);
-                this.Image = path;
-                image.SaveAs(path);
-                this.TrueImage = image;
-            }
+            this.Image = image;
         }
     }
 }
