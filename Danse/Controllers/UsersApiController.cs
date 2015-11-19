@@ -95,24 +95,7 @@ namespace Danse.Controllers
         public HttpResponseMessage PostUserCreate(
             [FromBody] string first_name,
             [FromBody] string last_name,
-            [FromBody] string gender,
-            [FromBody] DateTime birth_date,
-            [FromBody] string email,
-            [FromBody] string phone,
-            [FromBody] string image
-             )
-        {
-            IUserRepository user = new UserRepository();
-            var result = user.Add(first_name, last_name, gender, birth_date, email, phone, image,);
-            return Request.CreateResponse(HttpStatusCode.OK, result);
-        }
-
-        [HttpPost]
-        [Route("api/v1/user/update")]
-        public HttpResponseMessage PostUserUpdate(
-            [FromBody] string first_name,
-            [FromBody] string last_name,
-            [FromBody] string gender,
+            [FromBody] bool gender,
             [FromBody] DateTime birth_date,
             [FromBody] string email,
             [FromBody] string phone,
@@ -121,7 +104,25 @@ namespace Danse.Controllers
              )
         {
             IUserRepository user = new UserRepository();
-            var result = user.Update(first_name, last_name, gender, birth_date, email, phone, password, image, "null");
+            var result = user.Add(new User(first_name, last_name, gender, birth_date, email, phone, password, image, "null"));
+            return Request.CreateResponse(HttpStatusCode.OK, result);
+        }
+
+        [HttpPost]
+        [Route("api/v1/user/update")]
+        public HttpResponseMessage PostUserUpdate(
+            [FromBody] string first_name,
+            [FromBody] string last_name,
+            [FromBody] bool gender,
+            [FromBody] DateTime birth_date,
+            [FromBody] string email,
+            [FromBody] string phone,
+            [FromBody] string password,
+            [FromBody] HttpPostedFileBase image
+             )
+        {
+            IUserRepository user = new UserRepository();
+            var result = user.Update(new User(first_name, last_name, gender, birth_date, email, phone, password, image, "null"));
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
