@@ -55,7 +55,7 @@ namespace Danse.Models.AccessBd
         public User GetPublic(int id)
         {
             User user = new User();
-            string query = "Select first_name,last_name,gender,phone,image,role from user where id ="+id;
+            string query = "Select id,first_name,last_name,gender,phone,image,role from user where id ="+id;
 
             using (MySqlDataReader reader = MySqlHelper.ExecuteReader(connexion, query))
             {
@@ -64,12 +64,13 @@ namespace Danse.Models.AccessBd
                 {
                     while (reader.Read())
                     {
-                        user.FirstName = reader.GetString(0);
-                        user.LastName = reader.GetString(1);
-                        user.Gender = reader.GetBoolean(2);
-                        user.Phone = reader.GetString(3);
-                        user.Image = reader.GetString(4);
-                        user.Role = reader.GetInt16(5);
+                        user.UserId = reader.GetInt16(0);
+                        user.FirstName = reader.GetString(1);
+                        user.LastName = reader.GetString(2);
+                        user.Gender = reader.GetBoolean(3);
+                        user.Phone = reader.GetString(4);
+                        user.Image = reader.GetString(5);
+                        user.Role = reader.GetInt16(6);
                     }
                 }
             }
@@ -85,7 +86,7 @@ namespace Danse.Models.AccessBd
         public User GetPrivate(int id)
         {
             User user = new User();
-            string query = "Select first_name,last_name,email,gender,phone,image,role from user where id =" + id;
+            string query = "Select id,first_name,last_name,email,gender,phone,image,role from user where id =" + id;
 
             using (MySqlDataReader reader = MySqlHelper.ExecuteReader(connexion, query))
             {
@@ -94,13 +95,14 @@ namespace Danse.Models.AccessBd
                 {
                     while (reader.Read())
                     {
-                        user.FirstName = reader.GetString(0);
-                        user.LastName = reader.GetString(1);
-                        user.Email = reader.GetString(2);
-                        user.Gender = reader.GetBoolean(3);
-                        user.Phone = reader.GetString(4);
-                        user.Image = reader.GetString(5);
-                        user.Role = reader.GetInt16(6);
+                        user.UserId = reader.GetInt16(0);
+                        user.FirstName = reader.GetString(1);
+                        user.LastName = reader.GetString(2);
+                        user.Email = reader.GetString(3);
+                        user.Gender = reader.GetBoolean(4);
+                        user.Phone = reader.GetString(5);
+                        user.Image = reader.GetString(6);
+                        user.Role = reader.GetInt16(7);
                     }
                 }
             }
