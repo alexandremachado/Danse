@@ -100,8 +100,8 @@ namespace Danse.Controllers
             return json;
         }
 
-        [HttpPost]
-        [Route("api/v1/user/create")]
+       [HttpPost]
+       // [Route("api/v1/user/create")]
         public HttpResponseMessage PostUserCreate(
             [FromBody] string first_name,
             [FromBody] string last_name,
@@ -118,8 +118,8 @@ namespace Danse.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
         
-        [HttpPost]
-        [Route("api/v1/user/update")]
+       [HttpPost]
+      //  [Route("api/v1/user/update")]
         public HttpResponseMessage PostUserUpdate(
             [FromBody] string first_name,
             [FromBody] string last_name,
