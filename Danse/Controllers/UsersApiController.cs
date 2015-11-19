@@ -101,7 +101,7 @@ namespace Danse.Controllers
         }
 
        [HttpPost]
-       // [Route("api/v1/user/create")]
+       [Route("api/v1/user/create")]
         public HttpResponseMessage PostUserCreate(
             [FromBody] string first_name,
             [FromBody] string last_name,
@@ -119,7 +119,7 @@ namespace Danse.Controllers
         }
         
        [HttpPost]
-      //  [Route("api/v1/user/update")]
+       [Route("api/v1/user/update")]
         public HttpResponseMessage PostUserUpdate(
             [FromBody] string first_name,
             [FromBody] string last_name,
