@@ -10,7 +10,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Script.Serialization;
-
+using System.Web;
 
 namespace Danse.Controllers
 {
@@ -116,11 +116,12 @@ namespace Danse.Controllers
             [FromBody] DateTime birth_date,
             [FromBody] string email,
             [FromBody] string phone,
-            [FromBody] string image
+            [FromBody] string password,
+            [FromBody] HttpPostedFileBase image
              )
         {
             IUserRepository user = new UserRepository();
-            var result = user.Update(first_name, last_name, gender, birth_date, email, phone, image);
+            var result = user.Update(first_name, last_name, gender, birth_date, email, phone, password, image, "null");
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
