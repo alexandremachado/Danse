@@ -89,7 +89,17 @@ namespace Danse.Controllers
             var json = new JavaScriptSerializer().Serialize(result);
             return json;
         }
-        
+
+        [HttpGet]
+        [Route("api/v1/category/list")]
+        public string GetAllCategory()
+        {
+            ICategorieRepository category = new CategorieRepository();
+            var result = category.GetAll();
+            var json = new JavaScriptSerializer().Serialize(result);
+            return json;
+        }
+
         [HttpPost]
         [Route("api/v1/user/create")]
         public HttpResponseMessage PostUserCreate(
@@ -214,7 +224,18 @@ namespace Danse.Controllers
             var result = messenger.Add(userMessenge);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
-        
+
+        [HttpPost]
+        [Route("api/v1/category/create")]
+        public HttpResponseMessage PostCategoryCreate(
+           [FromBody] string name
+            )
+        {
+            ICategorieRepository cat = new CategorieRepository();
+            var result = cat.Add(new Categorie(name));
+            return Request.CreateResponse(HttpStatusCode.OK, result);
+        }
+
     }
 
 }

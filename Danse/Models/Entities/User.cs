@@ -25,6 +25,7 @@ namespace Danse.Models.Entities
         [Required]
         public string Password { get; set; }
         public string Image { get; set; }
+        public int Role { get; set; }
 
         public User()
         {
@@ -42,6 +43,7 @@ namespace Danse.Models.Entities
             this.Phone = phone;
             this.Password = password;
             this.Image = image;
+            this.Role = 0;
         }
     }
 }

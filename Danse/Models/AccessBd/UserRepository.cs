@@ -20,7 +20,7 @@ namespace Danse.Models.AccessBd
         public IEnumerable<User> GetAll()
         {
             List<User> users = new List<User>();
-            string query = "Select id,first_name,last_name,gender,birth_date,email,phone,image from user";
+            string query = "Select id,first_name,last_name,gender,birth_date,email,phone,image,role from user";
             using (MySqlDataReader reader = MySqlHelper.ExecuteReader(connexion, query))
             {
                 // Check if the reader returned any rows
@@ -37,6 +37,7 @@ namespace Danse.Models.AccessBd
                         user.Email = reader.GetString(5);
                         user.Phone = reader.GetString(6);
                         user.Image = reader.GetString(7);
+                        user.Role = reader.GetInt16(8);
                         users.Add(user);
                     }
                 }
@@ -54,7 +55,7 @@ namespace Danse.Models.AccessBd
         public User GetPublic(int id)
         {
             User user = new User();
-            string query = "Select first_name,last_name,gender,phone,image from user where id ="+id;
+            string query = "Select first_name,last_name,gender,phone,image,role from user where id ="+id;
 
             using (MySqlDataReader reader = MySqlHelper.ExecuteReader(connexion, query))
             {
@@ -68,6 +69,7 @@ namespace Danse.Models.AccessBd
                         user.Gender = reader.GetBoolean(2);
                         user.Phone = reader.GetString(3);
                         user.Image = reader.GetString(4);
+                        user.Role = reader.GetInt16(5);
                     }
                 }
             }
@@ -83,7 +85,7 @@ namespace Danse.Models.AccessBd
         public User GetPrivate(int id)
         {
             User user = new User();
-            string query = "Select first_name,last_name,email,gender,phone,image from user where id =" + id;
+            string query = "Select first_name,last_name,email,gender,phone,image,role from user where id =" + id;
 
             using (MySqlDataReader reader = MySqlHelper.ExecuteReader(connexion, query))
             {
@@ -98,6 +100,7 @@ namespace Danse.Models.AccessBd
                         user.Gender = reader.GetBoolean(3);
                         user.Phone = reader.GetString(4);
                         user.Image = reader.GetString(5);
+                        user.Role = reader.GetInt16(6);
                     }
                 }
             }
@@ -116,7 +119,7 @@ namespace Danse.Models.AccessBd
             {
                 return false;
             }
-            string query = "INSERT INTO user (first_name,last_name,gender,birth_date,email,phone,pwd,image) VALUES (@first_name,@last_name,@gender,@birth,@email,@phone,@pwd,@image)";
+            string query = "INSERT INTO user (first_name,last_name,gender,birth_date,email,phone,pwd,image,role) VALUES (@first_name,@last_name,@gender,@birth,@email,@phone,@pwd,@image,@role)";
 
             List<MySqlParameter> parms = new List<MySqlParameter>();
             parms.Add(new MySqlParameter("first_name", user.FirstName));
@@ -127,7 +130,8 @@ namespace Danse.Models.AccessBd
             parms.Add(new MySqlParameter("phone", user.Phone));
             parms.Add(new MySqlParameter("pwd", user.Password));
             parms.Add(new MySqlParameter("image", user.Image));
-            
+            parms.Add(new MySqlParameter("role", user.Role));
+
 
             MySqlHelper.ExecuteNonQuery(connexion, query, parms.ToArray());
 

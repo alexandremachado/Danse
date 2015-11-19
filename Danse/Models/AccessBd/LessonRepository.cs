@@ -133,7 +133,7 @@ namespace Danse.Models.AccessBd
                 return false;
             }
             
-            string query = "INSERT INTO lesson (description,nb_free,nb_booked,price,user_id,title,category_id,zip_code,address,start_date,end_date) VALUES (@description,@free,@booked,@price,@userid,@title,@categoryid,@zipCode,@address,@lat,@long,@startdate,@enddate)";
+            string query = "INSERT INTO lesson (description,nb_free,nb_booked,price,user_id,title,category_id,zip_code,address,start_date,end_date) VALUES (@description,@free,@booked,@price,@userid,@title,@categoryid,@zipCode,@address,@startdate,@enddate)";
 
             List<MySqlParameter> parms = new List<MySqlParameter>();
             parms.Add(new MySqlParameter("description", lesson.description));
@@ -275,7 +275,7 @@ namespace Danse.Models.AccessBd
             List<Lesson> lessons = new List<Lesson>();
             if (_repositoryUser.GetPublic(userId).FirstName != "")
             {
-                string query = "SELECT id,description,price,title,c.name,start_date,end_date,u.id as userid,first_name,last_name,image FROM lesson as l JOIN category as c ON c.id = l.category_id JOIN user as u ON u.id = l.user_id WHERE user_id=" + userId;
+                string query = "SELECT l.id,description,price,title,c.name,start_date,end_date,u.id as userid,first_name,last_name,image FROM lesson as l JOIN category as c ON c.id = l.category_id JOIN user as u ON u.id = l.user_id WHERE user_id=" + userId;
 
                 using (MySqlDataReader reader = MySqlHelper.ExecuteReader(connexion, query))
                 {
