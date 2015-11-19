@@ -139,6 +139,27 @@ namespace Danse.Models.AccessBd
             return true;
         }
 
+        public int GetId(string mail, string pwd)
+        {
+            int user = 0;
+            string query = "SELECT id FROM user WHERE mail = "+mail+" AND pwd = "+pwd;
+
+            using (MySqlDataReader reader = MySqlHelper.ExecuteReader(connexion, query))
+            {
+                // Check if the reader returned any rows
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        user = reader.GetInt16(0);
+                    }
+                }
+            }
+
+            return user;
+
+        }
+
         /// <summary>
         /// Supprime un utiisateur
         /// </summary>

@@ -13,6 +13,7 @@ namespace Danse.Models.Interfaces
         User GetPrivate(int id);
         bool Remove(int id);
         bool Update(User user);
-        bool Add(User user); 
+        bool Add(User user);
+        int GetId(string mail, string pwd);
     }
 }

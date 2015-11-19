@@ -189,6 +189,18 @@ namespace Danse.Controllers
         }
 
         [HttpPost]
+        [Route("api/v1/user/connect")]
+        public HttpResponseMessage PostUserConnect(
+           [FromBody] string email,
+           [FromBody] string password
+            )
+        {
+            IUserRepository user = new UserRepository();
+            var result = user.GetId(email,password);
+            return Request.CreateResponse(HttpStatusCode.OK, result);
+        }
+
+        [HttpPost]
         [Route("api/v1/lesson/delete")]
         public HttpResponseMessage PostLessonDelete([FromBody] int id)
         {
@@ -235,7 +247,6 @@ namespace Danse.Controllers
             var result = cat.Add(new Categorie(name));
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
-
     }
 
 }
