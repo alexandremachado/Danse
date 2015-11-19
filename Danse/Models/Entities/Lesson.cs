@@ -33,6 +33,8 @@ namespace Danse.Models.Entities
         [Required]
         public float Longitude { get; set; }
 
+        public int userid { get; set; }
+
         public virtual User Author {get; set;}
         public virtual Collection<Messenger> Message { get; set; } 
         public virtual Categorie Categorie { get; set; }
@@ -42,7 +44,7 @@ namespace Danse.Models.Entities
 
         }
 
-        public Lesson(string description, DateTime start,DateTime end, int free,int booked, float price, string title,string adresse, string code,float latitude, float longitude, User author,Collection<Messenger> messages, Categorie cat)
+        public Lesson(string description, DateTime start,DateTime end, int free,int booked, float price, string title,string adresse, string code,float latitude, float longitude, int userid,Collection<Messenger> messages, Categorie cat)
         {
             this.description = description;
             this.DateEnd = end;
@@ -55,7 +57,7 @@ namespace Danse.Models.Entities
             this.ZipCode = code;
             this.Latitude = latitude;
             this.Longitude = longitude;
-            this.Author = author;
+            this.userid = userid;
             this.Message = messages;
             this.Categorie = cat;
         }
