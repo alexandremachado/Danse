@@ -135,7 +135,7 @@ namespace Danse.Models.AccessBd
                 return false;
             }
             
-            string query = "INSERT INTO lesson (description,nb_free,nb_booked,price,user_id,title,category_id,zip_code,address,lat,long,start_date,end_date) VALUES (@description,@free,@booked,@price,@userid,@title,@categoryid,@zipCode,@address,@lat,@long,@startdate,@enddate)";
+            string query = "INSERT INTO lesson (description,nb_free,nb_booked,price,user_id,title,category_id,zip_code,address,start_date,end_date) VALUES (@description,@free,@booked,@price,@userid,@title,@categoryid,@zipCode,@address,@lat,@long,@startdate,@enddate)";
 
             List<MySqlParameter> parms = new List<MySqlParameter>();
             parms.Add(new MySqlParameter("description", lesson.description));
@@ -144,11 +144,9 @@ namespace Danse.Models.AccessBd
             parms.Add(new MySqlParameter("price", lesson.Price));
             parms.Add(new MySqlParameter("userid", lesson.userid));
             parms.Add(new MySqlParameter("title", lesson.Title));
-            parms.Add(new MySqlParameter("categoryid", lesson.Categorie.CategorieId));
+            parms.Add(new MySqlParameter("categoryid", lesson.idcat));
             parms.Add(new MySqlParameter("zipCode", lesson.ZipCode));
             parms.Add(new MySqlParameter("address", lesson.Adresse));
-            parms.Add(new MySqlParameter("lat", lesson.Latitude));
-            parms.Add(new MySqlParameter("long", lesson.Longitude));
             parms.Add(new MySqlParameter("startdate", lesson.DateStart));
             parms.Add(new MySqlParameter("enddate", lesson.DateEnd));
 
@@ -361,19 +359,17 @@ namespace Danse.Models.AccessBd
                 throw new ArgumentNullException();
             }
 
-            string query = "UPDATE lesson SET description = @desc, nb_free=@free,nb_booked=@booked,user_id@userid,title=@title,category_id=@categoryid,zip_code=@zip,address=@address,lat=@lat,long=@long,start_date=@start,end_date=@end WHERE id=@idlesson";
+            string query = "UPDATE lesson SET description = @desc, nb_free=@free,nb_booked=@booked,user_id@userid,title=@title,category_id=@categoryid,zip_code=@zip,address=@address,start_date=@start,end_date=@end WHERE id=@idlesson";
 
             List<MySqlParameter> parms = new List<MySqlParameter>();
             parms.Add(new MySqlParameter("desc", lesson.description));
             parms.Add(new MySqlParameter("free", lesson.NumberFree));
             parms.Add(new MySqlParameter("booked", lesson.NumberBooked));
-            parms.Add(new MySqlParameter("userid", lesson.Author.UserId));
+            parms.Add(new MySqlParameter("userid", lesson.userid));
             parms.Add(new MySqlParameter("title", lesson.Title));
-            parms.Add(new MySqlParameter("categoryid", lesson.Categorie));
+            parms.Add(new MySqlParameter("categoryid", lesson.idcat));
             parms.Add(new MySqlParameter("zip", lesson.ZipCode));
             parms.Add(new MySqlParameter("address", lesson.Adresse));
-            parms.Add(new MySqlParameter("lat", lesson.Latitude));
-            parms.Add(new MySqlParameter("long", lesson.Longitude));
             parms.Add(new MySqlParameter("start", lesson.DateStart));
             parms.Add(new MySqlParameter("end", lesson.DateEnd));
             parms.Add(new MySqlParameter("idlesson", lesson.LessonId));
