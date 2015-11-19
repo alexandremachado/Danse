@@ -169,7 +169,7 @@ namespace Danse.Controllers
              )
         {
             ILessonRepository lesson = new LessonRepository();
-            var result = lesson.Update(new Lesson(idUser, description, start_date, end_date, nb_free, nb_blocked, price, category, title, zip, address));
+            var result = lesson.Update(new Lesson( description, start_date, end_date, nb_free, nb_blocked, price, title, address, zip, category, idUser));
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
