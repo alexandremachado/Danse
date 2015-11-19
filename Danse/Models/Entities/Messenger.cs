@@ -18,19 +18,20 @@ namespace Danse.Models.Entities
         [Required]
         public int lessonid { get; set; }
 
-        public virtual User Author { get; set; }
+        public int userid { get; set; }
+        public User Author {get; set;}
 
         public Messenger()
         {
 
         }
 
-        public Messenger(string subject, string message,int lessonid,User author)
+        public Messenger(string subject, string message,int lessonid,int userid)
         {
             this.Subject = subject;
             this.Message = message;
             this.lessonid = lessonid;
-            this.Author = author;
+            this.userid = userid;
         }
     }
 }

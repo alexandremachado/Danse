@@ -98,7 +98,7 @@ namespace Danse.Models.AccessBd
             List<MySqlParameter> parms = new List<MySqlParameter>();
             parms.Add(new MySqlParameter("subject", message.Subject));
             parms.Add(new MySqlParameter("message", message.Message));
-            parms.Add(new MySqlParameter("user_id", message.Author.UserId));
+            parms.Add(new MySqlParameter("user_id", message.userid));
             parms.Add(new MySqlParameter("lesson_id", message.lessonid));
 
             MySqlHelper.ExecuteNonQuery(connexion, query, parms.ToArray());
