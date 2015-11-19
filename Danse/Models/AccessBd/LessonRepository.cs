@@ -314,6 +314,49 @@ namespace Danse.Models.AccessBd
             return lessons;
         }
 
+        /// <summary>Retourne les lessons de la categorie
+        /// </summary>
+        /// <param name="idcat">id categorie</param>
+        /// <returns>Liste de lesson</returns>
+        public IEnumerable<Lesson> GetLessonByCat(int idcat)
+        {
+            List<Lesson> lessons = new List<Lesson>();
+            string query = "SELECT id,description,price,title,c.name,start_date,end_date,u.id as userid,first_name,last_name,image FROM lesson as l JOIN category as c ON c.id = l.category_id JOIN user as u ON u.id = l.user_id WHERE c.id = "+idcat;
+
+            using (MySqlDataReader reader = MySqlHelper.ExecuteReader(connexion, query))
+            {
+                // Check if the reader returned any rows
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Lesson lesson = new Lesson();
+                        User author = new User();
+                        Categorie cat = new Categorie();
+
+                        lesson.LessonId = reader.GetInt16(0);
+                        lesson.description = reader.GetString(1);
+                        lesson.Price = reader.GetFloat(2);
+                        lesson.Title = reader.GetString(3);
+                        cat.Name = reader.GetString(4);
+                        lesson.DateStart = reader.GetDateTime(5);
+                        lesson.DateEnd = reader.GetDateTime(6);
+
+                        author.UserId = reader.GetInt16(7);
+                        author.FirstName = reader.GetString(8);
+                        author.LastName = reader.GetString(9);
+                        author.Image = reader.GetString(10);
+
+                        lesson.Author = author;
+                        lesson.Categorie = cat;
+                        lessons.Add(lesson);
+                    }
+                }
+            }
+        
+            return lessons;
+        }
+
         /// <summary>
         /// Ajoute un utilisateur à la lesson
         /// </summary>
