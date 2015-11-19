@@ -104,7 +104,7 @@ namespace Danse.Controllers
              )
         {
             IUserRepository user = new UserRepository();
-            var result = user.Add(new User(first_name, last_name, gender, birth_date, email, phone, password, image, "null"));
+            var result = user.Add(new User(first_name, last_name, gender, birth_date, email, phone, password, image));
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
         
@@ -122,7 +122,7 @@ namespace Danse.Controllers
              )
         {
             IUserRepository user = new UserRepository();
-            var result = user.Update(new User(first_name, last_name, gender, birth_date, email, phone, password, image, "null"));
+            var result = user.Update(new User(first_name, last_name, gender, birth_date, email, phone, password, image));
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
         
