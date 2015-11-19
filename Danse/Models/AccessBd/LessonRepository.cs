@@ -54,7 +54,6 @@ namespace Danse.Models.AccessBd
                         author.Phone = reader.GetString(18);
                         author.Password = reader.GetString(19);
                         author.Image = reader.GetString(20);
-                        author.Status = reader.GetString(21);
 
                         cat.Name = reader.GetString(22);
 
@@ -110,7 +109,6 @@ namespace Danse.Models.AccessBd
                         author.Phone = reader.GetString(18);
                         author.Password = reader.GetString(19);
                         author.Image = reader.GetString(20);
-                        author.Status = reader.GetString(21);
 
                         cat.Name = reader.GetString(22);
 
@@ -219,7 +217,6 @@ namespace Danse.Models.AccessBd
                         author.Email = reader.GetString(17);
                         author.Phone = reader.GetString(18);
                         author.Image = reader.GetString(19);
-                        author.Status = reader.GetString(20);
 
                         cat.Name = reader.GetString(21);
 
