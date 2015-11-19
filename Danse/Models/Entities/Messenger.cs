@@ -14,8 +14,6 @@ namespace Danse.Models.Entities
         public string Subject { get; set; }
         [Required]
         public string Message { get; set; }
-        [Required]
-        public bool Status { get; set; }
 
         [Required]
         public int lessonid { get; set; }
@@ -27,11 +25,10 @@ namespace Danse.Models.Entities
 
         }
 
-        public Messenger(string subject, string message,bool status,int lessonid,User author)
+        public Messenger(string subject, string message,int lessonid,User author)
         {
             this.Subject = subject;
             this.Message = message;
-            this.Status = status;
             this.lessonid = lessonid;
             this.Author = author;
         }

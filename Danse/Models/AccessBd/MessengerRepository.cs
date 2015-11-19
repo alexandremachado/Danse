@@ -18,7 +18,7 @@ namespace Danse.Models.AccessBd
         /// <returns>Message</returns>
         public Messenger Get(int id)
         {
-            string query = "select id,subject,message,status,lesson_id,u.id,last_name,first_name,image FROM messenger as m JOIN user as u ON u.id = m.user_id WHERE m.id = "+id;
+            string query = "select id,subject,message,lesson_id,u.id,last_name,first_name,image FROM messenger as m JOIN user as u ON u.id = m.user_id WHERE m.id = "+id;
             Messenger message = new Messenger();
             User author = new User();
          
@@ -32,12 +32,11 @@ namespace Danse.Models.AccessBd
                         message.MessengerId = reader.GetInt16(0);
                         message.Subject = reader.GetString(1);
                         message.Message = reader.GetString(2);
-                        message.Status = reader.GetBoolean(3);
-                        message.lessonid = reader.GetInt16(4);
-                        author.UserId = reader.GetInt16(5);
-                        author.LastName = reader.GetString(6);
-                        author.FirstName = reader.GetString(7);
-                        author.Image = reader.GetString(8);
+                        message.lessonid = reader.GetInt16(3);
+                        author.UserId = reader.GetInt16(4);
+                        author.LastName = reader.GetString(5);
+                        author.FirstName = reader.GetString(6);
+                        author.Image = reader.GetString(7);
 
                         message.Author = author;
                     }
@@ -55,7 +54,7 @@ namespace Danse.Models.AccessBd
         public IEnumerable<Messenger> GetAllByLesson(int lessonId)
         {
             List<Messenger> messages = new List<Messenger>();
-            string query = "Select id,subject,message,status,u.id,first_name,last_name,image from messenger as m JOIN user as u ON u.id = m.user_id WHERE lesson_id ="+lessonId;
+            string query = "Select id,subject,message,u.id,first_name,last_name,image from messenger as m JOIN user as u ON u.id = m.user_id WHERE lesson_id ="+lessonId;
             using (MySqlDataReader reader = MySqlHelper.ExecuteReader(connexion, query))
             {
                 // Check if the reader returned any rows
@@ -68,12 +67,11 @@ namespace Danse.Models.AccessBd
                         message.MessengerId = reader.GetInt16(0);
                         message.Subject = reader.GetString(1);
                         message.Message = reader.GetString(2);
-                        message.Status = reader.GetBoolean(3);
 
-                        author.UserId = reader.GetInt16(4);
-                        author.LastName = reader.GetString(5);
-                        author.FirstName = reader.GetString(6);
-                        author.Image = reader.GetString(7);
+                        author.UserId = reader.GetInt16(3);
+                        author.LastName = reader.GetString(4);
+                        author.FirstName = reader.GetString(5);
+                        author.Image = reader.GetString(6);
                        
                         messages.Add(message);
                     }
@@ -95,12 +93,11 @@ namespace Danse.Models.AccessBd
             {
                 return false;
             }
-            string query = "INSERT INTO messenger (subject,message,status,user_id,lesson_id) VALUES (@subject,@message,@status,@user,@lesson)";
+            string query = "INSERT INTO messenger (subject,message,user_id,lesson_id) VALUES (@subject,@message,@status,@user,@lesson)";
 
             List<MySqlParameter> parms = new List<MySqlParameter>();
             parms.Add(new MySqlParameter("subject", message.Subject));
             parms.Add(new MySqlParameter("message", message.Message));
-            parms.Add(new MySqlParameter("status", message.Status));
             parms.Add(new MySqlParameter("user_id", message.Author.UserId));
             parms.Add(new MySqlParameter("lesson_id", message.lessonid));
 
@@ -140,12 +137,11 @@ namespace Danse.Models.AccessBd
                 return false;
             }
 
-            string query = "UPDATE messenger SET subject=@subject,message=@message,status=@status WHERE id=@messageid";
+            string query = "UPDATE messenger SET subject=@subject,message=@message WHERE id=@messageid";
 
             List<MySqlParameter> parms = new List<MySqlParameter>();
             parms.Add(new MySqlParameter("subject", message.Subject));
             parms.Add(new MySqlParameter("message", message.Message));
-            parms.Add(new MySqlParameter("status", message.Status));
             parms.Add(new MySqlParameter("messageid", message.MessengerId));
 
             MySqlHelper.ExecuteNonQuery(connexion, query, parms.ToArray());
