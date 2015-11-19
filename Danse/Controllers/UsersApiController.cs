@@ -15,7 +15,7 @@ using System.Web;
 namespace Danse.Controllers
 {
 
-    public class UsersApiController : ApiController
+    public class APIController : ApiController
     {
 
         [HttpGet]
@@ -37,7 +37,7 @@ namespace Danse.Controllers
             var json = new JavaScriptSerializer().Serialize(result);
             return json;
         }
-
+        
         [HttpGet]
         [Route("api/v1/user/private/{id}")]
         public string GetUserPrivate(int id)
@@ -69,7 +69,7 @@ namespace Danse.Controllers
             var json = new JavaScriptSerializer().Serialize(result);
             return json;
         }
-
+        
         [HttpGet]
         [Route("api/v1/lesson/book/{id}")]
         public string GetLessonBook(int id)
@@ -89,7 +89,7 @@ namespace Danse.Controllers
             var json = new JavaScriptSerializer().Serialize(result);
             return json;
         }
-
+        
         [HttpPost]
         [Route("api/v1/user/create")]
         public HttpResponseMessage PostUserCreate(
@@ -100,14 +100,14 @@ namespace Danse.Controllers
             [FromBody] string email,
             [FromBody] string phone,
             [FromBody] string password,
-            [FromBody] HttpPostedFileBase image
+            [FromBody] string image
              )
         {
             IUserRepository user = new UserRepository();
             var result = user.Add(new User(first_name, last_name, gender, birth_date, email, phone, password, image, "null"));
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
-
+        
         [HttpPost]
         [Route("api/v1/user/update")]
         public HttpResponseMessage PostUserUpdate(
@@ -118,13 +118,14 @@ namespace Danse.Controllers
             [FromBody] string email,
             [FromBody] string phone,
             [FromBody] string password,
-            [FromBody] HttpPostedFileBase image
+            [FromBody] string image
              )
         {
             IUserRepository user = new UserRepository();
             var result = user.Update(new User(first_name, last_name, gender, birth_date, email, phone, password, image, "null"));
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
+        
 
         [HttpPost]
         [Route("api/v1/user/delete")]
@@ -213,7 +214,7 @@ namespace Danse.Controllers
             var result = messenger.Add(userMessenge);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
-
+        
     }
 
 }
