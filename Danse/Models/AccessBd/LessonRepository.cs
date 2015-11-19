@@ -38,7 +38,7 @@ namespace Danse.Models.AccessBd
                         lesson.NumberBooked = reader.GetInt16(3);
                         lesson.Price = reader.GetFloat(4);
                         lesson.Title = reader.GetString(5);
-                        lesson.ZipCode = reader.GetInt16(6);
+                        lesson.ZipCode = reader.GetString(6);
                         lesson.Adresse = reader.GetString(7);
                         lesson.Latitude = reader.GetFloat(8);
                         lesson.Longitude = reader.GetFloat(9);
@@ -94,7 +94,7 @@ namespace Danse.Models.AccessBd
                         lesson.NumberBooked = reader.GetInt16(3);
                         lesson.Price = reader.GetFloat(4);
                         lesson.Title = reader.GetString(5);
-                        lesson.ZipCode = reader.GetInt16(6);
+                        lesson.ZipCode = reader.GetString(6);
                         lesson.Adresse = reader.GetString(7);
                         lesson.Latitude = reader.GetFloat(8);
                         lesson.Longitude = reader.GetFloat(9);
@@ -185,7 +185,7 @@ namespace Danse.Models.AccessBd
         /// <param name="end">Date de fin</param>
         /// <param name="zip">Code postal de l'endroit</param>
         /// <returns>Une liste de lesson</returns>
-        public IEnumerable<Lesson> GetFilter(DateTime start,DateTime end, int zip)
+        public IEnumerable<Lesson> GetFilter(DateTime start,DateTime end, string zip)
         {
             string query = "select l.id as id_lesson, description,nb_free,nb_booked,price,title,zip_code,adresse,lat,long,start_date,end_date,u.id as user_id, first_name,last_name,gender,birth_date,email,phone,image,status,c.name FROM lesson as l JOIN user as u ON u.id = l.user_id JOIN category as c ON c.id = l.category_id WHERE start_date >= "+start+" end_date <= "+end+" AND zip_code = "+zip;
             List<Lesson> lessons = new List<Lesson>();
@@ -206,7 +206,7 @@ namespace Danse.Models.AccessBd
                         lesson.NumberBooked = reader.GetInt16(3);
                         lesson.Price = reader.GetFloat(4);
                         lesson.Title = reader.GetString(5);
-                        lesson.ZipCode = reader.GetInt16(6);
+                        lesson.ZipCode = reader.GetString(6);
                         lesson.Adresse = reader.GetString(7);
                         lesson.Latitude = reader.GetFloat(8);
                         lesson.Longitude = reader.GetFloat(9);

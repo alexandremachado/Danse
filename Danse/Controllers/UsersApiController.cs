@@ -119,7 +119,7 @@ namespace Danse.Controllers
              )
         {
             IUserRepository user = new UserRepository();
-            var result = user.Modify(first_name, last_name, gender, birth_date, email, phone, image);
+            var result = user.Update(first_name, last_name, gender, birth_date, email, phone, image);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
@@ -128,7 +128,7 @@ namespace Danse.Controllers
         public HttpResponseMessage PostUserDelete([FromBody] int id)
         {
             IUserRepository user = new UserRepository();
-            var result = user.Delete(id);
+            var result = user.Remove(id);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
@@ -147,7 +147,7 @@ namespace Danse.Controllers
              )
         {
             ILessonRepository lesson = new LessonRepository();
-            var result = lesson.Add(description, end_date, start_date, nb_free, nb_blocked, price, category, title, address);
+            var result = lesson.Add(new Lesson(description, end_date, start_date, nb_free, nb_blocked, price, category, title, address));
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
@@ -175,7 +175,7 @@ namespace Danse.Controllers
         public HttpResponseMessage PostLessonDelete([FromBody] int id)
         {
             ILessonRepository lesson = new LessonRepository();
-            var result = lesson.Delete(id);
+            var result = lesson.Remove(id);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 

@@ -27,7 +27,7 @@ namespace Danse.Models.Entities
         [Required]
         public string Adresse { get; set; }
         [Required]
-        public int ZipCode { get; set; }
+        public string ZipCode { get; set; }
         [Required]
         public float Latitude { get; set; }
         [Required]
@@ -42,7 +42,7 @@ namespace Danse.Models.Entities
 
         }
 
-        public Lesson(string description, DateTime start,DateTime end, int free,int booked, float price, string title,string adresse, int code,float latitude, float longitude, User author,Collection<Messenger> messages, Categorie cat)
+        public Lesson(string description, DateTime start,DateTime end, int free,int booked, float price, string title,string adresse, string code,float latitude, float longitude, User author,Collection<Messenger> messages, Categorie cat)
         {
             this.description = description;
             this.DateEnd = end;
