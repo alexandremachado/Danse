@@ -25,7 +25,6 @@ namespace Danse.Models.Entities
         [Required]
         public string Password { get; set; }
         public string Image { get; set; }
-        public string Status { get; set; }
 
         public User()
         {
@@ -33,7 +32,7 @@ namespace Danse.Models.Entities
         }
 
 
-        public User(string first, string last, bool Gender, DateTime BirthDate,string email,string phone,string password, string image,string status)
+        public User(string first, string last, bool Gender, DateTime BirthDate,string email,string phone,string password, string image )
         {
             this.FirstName = first;
             this.LastName = last;
@@ -42,7 +41,6 @@ namespace Danse.Models.Entities
             this.Email = email;
             this.Phone = phone;
             this.Password = password;
-            this.Status = status;
             this.Image = image;
         }
     }
