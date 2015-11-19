@@ -70,11 +70,11 @@ namespace Danse.Controllers
         }
 
         [HttpGet]
-        [Route("api/v1/lesson/book/{id}/{page}")]
-        public string GetLessonBook(int id, int page)
+        [Route("api/v1/lesson/book/{id}")]
+        public string GetLessonBook(int id)
         {
             ILessonRepository lesson = new LessonRepository();
-            var result = lesson.GetAllBookByLesson(id, page);
+            var result = lesson.GetAllBookByLesson(id);
             var json = new JavaScriptSerializer().Serialize(result);
             return json;
         }

@@ -236,6 +236,40 @@ namespace Danse.Models.AccessBd
         }
 
         /// <summary>
+        /// Retourne la liste d'utilisateur inscrit à la lesson
+        /// </summary>
+        /// <param name="id">id lesson</param>
+        /// <returns>Liste d'utilisateur</returns>
+        public IEnumerable<User> GetAllBookByLesson(int id)
+        {
+            string query = "SELECT u.id,email,image,last_name,first_name from user as u JOIN booking as b ON b.user_id = u.id JOIN lesson as l ON b.lesson_id = l.id WHERE l.id = "+id;
+
+            List<User> users = new List<User>();
+            using (MySqlDataReader reader = MySqlHelper.ExecuteReader(connexion, query))
+            {
+                // Check if the reader returned any rows
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        User user = new User();
+
+                        user.UserId = reader.GetInt16(0);
+                        user.Email = reader.GetString(1);
+                        user.Image = reader.GetString(2);
+                        user.LastName = reader.GetString(3);
+                        user.FirstName = reader.GetString(4);
+                       
+                        users.Add(user);
+                    }
+                }
+            }
+
+            return users;
+
+        }
+
+        /// <summary>
         /// Retourne l'historique des lessons de l'utilisateur
         /// </summary>
         /// <param name="userid">Id utilisateur</param>

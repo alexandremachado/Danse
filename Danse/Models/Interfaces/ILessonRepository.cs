@@ -17,5 +17,6 @@ namespace Danse.Models.Interfaces
         IEnumerable<Lesson> GetFilter(DateTime start, DateTime end, int zip);
         IEnumerable<Lesson> GetLessonByUser(int userid);
         IEnumerable<Lesson> GetLessonByUserInFewTime(int userId);
+        IEnumerable<User> GetAllBookByLesson(int id);
     }
 }
