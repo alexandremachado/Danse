@@ -142,7 +142,7 @@ namespace Danse.Models.AccessBd
             parms.Add(new MySqlParameter("free", lesson.NumberFree));
             parms.Add(new MySqlParameter("booked", lesson.NumberBooked));
             parms.Add(new MySqlParameter("price", lesson.Price));
-            parms.Add(new MySqlParameter("userid", lesson.Author.UserId));
+            parms.Add(new MySqlParameter("userid", lesson.userid));
             parms.Add(new MySqlParameter("title", lesson.Title));
             parms.Add(new MySqlParameter("categoryid", lesson.Categorie.CategorieId));
             parms.Add(new MySqlParameter("zipCode", lesson.ZipCode));
