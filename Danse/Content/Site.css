@@ -22,3 +22,177 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*SEARCH BAR*/
+#search-form{
+	margin-top:15px;
+	position:relative;
+}
+#search-form input{
+	font-weight:600;
+}
+#search-form .input-group{
+	border:5px solid rgba(255, 255, 255, 0.5);
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	}
+#search-form .btn{
+	height:44px; text-align:center; border:0;
+	margin:0;
+	font-size:22px;
+	outline:none;
+	}
+#search-form .btn i{
+	margin-left:5px;
+	margin-right:5px;
+	}
+
+
+@media (min-width: 700px){
+	#monconteneur {
+	    width: 682px;
+	    /*position: relative;*/
+	}
+	#monconteneur {
+		position: absolute; 
+		bottom: 0px;
+
+	    margin-right: auto;
+	    margin-left: auto;
+	    padding-left: 40px;
+	    padding-right: 40px;
+	}
+}
+
+@media only screen and (min-width:800px) {
+    #monconteneur { 
+		background: rgba(0,0,0,0.6);
+	    -ms-filter:'progid:DXImageTransform.Microsoft.Alpha(Opacity=60)'; 
+	    width:100%; 
+	    padding-top:14px; 
+	}
+}
+
+@media only screen and (min-width: 800px){
+	#monconteneur {
+	    width: 100%;
+	    padding-top: 14px;
+	}
+}
+
+
+a.button_top {
+	border:none;
+	margin-top:5px;
+	background:#292929;
+	color:#fff;
+	font-size:11px;
+	padding:5px 16px 2px 16px;
+	text-decoration:none; 
+	transition: background .5s ease; 
+	-moz-transition: background .5s ease; 
+	-webkit-transition: background .5s ease; 
+	-o-transition: background .5s ease; 
+	display:inline-block;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	cursor:pointer;
+	outline:none;
+	font-weight:700;
+	text-transform:uppercase;
+	-webkit-font-smoothing: antialiased;
+}
+a.button_top#apply {
+	border:none;
+	margin-top:5px;
+	/*background: #F66;*/
+	/*background:#67B217;*/
+	background:#133f70;
+	
+}
+a.button_top:hover {background:#133f70; color:#fff;}
+
+#apply{margin-right:40px;}
+
+.form-group { position:relative; margin-bottom:20px;}
+
+.styled-select select {
+   background: transparent;
+   width:115%;
+   padding: 5px;
+   padding-left:15px;
+   border: 0;
+   border-radius: 0;
+   height: 41px;
+   margin:0;
+  	font-weight:400;
+	-moz-appearance: window;
+    -webkit-appearance: none;
+    cursor: pointer;
+		color:#999;
+   }
+.styled-select {
+   width: 100%;
+      overflow:hidden;
+   height: 44px;
+   background: #fff url(../img/down_arrow_select.png) no-repeat  right center ;
+	border:1px solid #ededed;
+	margin-bottom:25px;
+   } 
+.styled-select select::-ms-expand, .styled-select-2 select::-ms-expand {display: none;}
+
+.form-control {height: 38px; -webkit-box-shadow: none; box-shadow: none; -webkit-appearance: none; }
+.form-control.style-2 {height: 45px; -webkit-box-shadow: none; box-shadow: none; -webkit-appearance: none; border:none;  background-color:#fff; }
+
+
+.ie8 .form-control.style-2 {height: 45px; -webkit-box-shadow: none; box-shadow: none; -webkit-appearance: none; border:none;  background-color:#fff; line-height:45px; }
+
+.input-group button { height:45px; border:none; background-color:#333; color:#fff; -webkit-border-radius: 0px;-moz-border-radius: 0px;border-radius: 0px;}
+.input-group button:hover { background-color:#006db8; color:#fff; border:none;-webkit-border-radius: 0px;-moz-border-radius: 0px;border-radius: 0px; border:none;}
+.input-group button:focus { outline:none; border:none;}
+
+.form-control::-moz-placeholder { color: #999; opacity:1;}
+.form-control::-webkit-input-placeholder {color: #999;}
+
+input.form-control, textarea.form-control {
+	background:none;
+	background-color:#fff;
+	border:1px solid #ececec;
+	border-radius: 0;
+	 -webkit-appearance: none;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: none;
+  	color: #a0a0a0;
+	height:44px;
+	font-size:14px;
+	font-weight:400;
+	margin-bottom:25px;
+	font-family: 'Open Sans', Arial, sans-serif;
+	line-height: 1.428571429;
+	padding: 6px 12px;
+}
+input.form-control:focus, textarea.form-control:focus, select.form-control:focus {
+  border-color:none;
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  color:#555;
+}
+
+.border-event {
+    border-radius: 30px 0px 0px 0px;
+    -moz-border-radius: 30px 0px 0px 0px;
+    -webkit-border-radius: 30px 0px 0px 0px;
+    padding-top: 15px;
+}
+
+a {
+    text-decoration: none;
+}
+
+
