@@ -47,6 +47,16 @@ namespace Danse.Models.AccessBd
             return users;
         }
 
+        public static string CreateSHAHash(string Password)
+        {
+            string Salt = "ozauyvbyerytrg";
+            System.Security.Cryptography.SHA512Managed HashTool = new System.Security.Cryptography.SHA512Managed();
+            Byte[] PasswordAsByte = System.Text.Encoding.UTF8.GetBytes(string.Concat(Password, Salt));
+            Byte[] EncryptedBytes = HashTool.ComputeHash(PasswordAsByte);
+            HashTool.Clear();
+            return Convert.ToBase64String(EncryptedBytes);
+        }
+
         /// <summary>
         /// Récupère le profil public d'un utilisateur
         /// </summary>
@@ -130,7 +140,7 @@ namespace Danse.Models.AccessBd
             parms.Add(new MySqlParameter("birth", user.BirthDate));
             parms.Add(new MySqlParameter("email", user.Email));
             parms.Add(new MySqlParameter("phone", user.Phone));
-            parms.Add(new MySqlParameter("pwd", user.Password));
+            parms.Add(new MySqlParameter("pwd", CreateSHAHash(user.Password)));
             parms.Add(new MySqlParameter("image", user.Image));
             parms.Add(new MySqlParameter("role", user.Role));
 
@@ -144,7 +154,7 @@ namespace Danse.Models.AccessBd
         public int GetId(string mail, string pwd)
         {
             int user = 0;
-            string query = "SELECT id FROM user WHERE mail = "+mail+" AND pwd = "+pwd;
+            string query = "SELECT id FROM user WHERE mail = "+mail+" AND pwd = "+ CreateSHAHash(pwd);
 
             using (MySqlDataReader reader = MySqlHelper.ExecuteReader(connexion, query))
             {
@@ -201,7 +211,7 @@ namespace Danse.Models.AccessBd
             parms.Add(new MySqlParameter("birth", user.BirthDate));
             parms.Add(new MySqlParameter("email", user.Email));
             parms.Add(new MySqlParameter("phone", user.Phone));
-            parms.Add(new MySqlParameter("pwd", user.Password));
+            parms.Add(new MySqlParameter("pwd", CreateSHAHash(user.Password)));
             parms.Add(new MySqlParameter("image", user.Image));
             parms.Add(new MySqlParameter("userid", user.UserId));
 
