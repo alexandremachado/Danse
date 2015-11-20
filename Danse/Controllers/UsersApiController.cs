@@ -34,6 +34,16 @@ namespace Danse.Controllers
         }
 
         [HttpGet]
+        [Route("api/v1/user/all")]
+        public string GetAllUser()
+        {
+            IUserRepository user = new UserRepository();
+            var result = user.GetAll();
+            var json = new JavaScriptSerializer().Serialize(result);
+            return json;
+        }
+
+        [HttpGet]
         [Route("api/v1/messenger/list/{id}")]
         public string GetMessengerListId(int id)
         {
@@ -75,7 +85,7 @@ namespace Danse.Controllers
 
         [HttpGet]
         [Route("api/v1/lesson/all")]
-        public string GetAllLesson(int id)
+        public string GetAllLesson()
         {
             ILessonRepository lesson = new LessonRepository();
             var result = lesson.GetAll();
