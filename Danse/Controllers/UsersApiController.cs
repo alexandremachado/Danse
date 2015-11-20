@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Script.Serialization;
 using System.Web;
+using System.Web.Http.Description;
 
 namespace Danse.Controllers
 {
@@ -102,110 +103,71 @@ namespace Danse.Controllers
 
        [HttpPost]
        [Route("api/v1/user/create")]
-        public HttpResponseMessage PostUserCreate(
-            [FromBody] string first_name,
-            [FromBody] string last_name,
-            [FromBody] bool gender,
-            [FromBody] DateTime birth_date,
-            [FromBody] string email,
-            [FromBody] string phone,
-            [FromBody] string password,
-            [FromBody] string image
+        public HttpResponseMessage PostUserCreate([FromBody] User u
              )
         {
             IUserRepository user = new UserRepository();
-            var result = user.Add(new User(first_name, last_name, gender, birth_date, email, phone, password, image));
+            var result = user.Add(u);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
         
        [HttpPost]
        [Route("api/v1/user/update")]
-        public HttpResponseMessage PostUserUpdate(
-            [FromBody] string first_name,
-            [FromBody] string last_name,
-            [FromBody] bool gender,
-            [FromBody] DateTime birth_date,
-            [FromBody] string email,
-            [FromBody] string phone,
-            [FromBody] string password,
-            [FromBody] string image
+        public HttpResponseMessage PostUserUpdate([FromBody] User u
              )
         {
             IUserRepository user = new UserRepository();
-            var result = user.Update(new User(first_name, last_name, gender, birth_date, email, phone, password, image));
+            var result = user.Update(u);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
         
 
         [HttpPost]
         [Route("api/v1/user/delete")]
-        public HttpResponseMessage PostUserDelete([FromBody] int id)
+        public HttpResponseMessage PostUserDelete([FromBody] User u)
         {
             IUserRepository user = new UserRepository();
-            var result = user.Remove(id);
+            var result = user.Remove(u.UserId);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
         [HttpPost]
         [Route("api/v1/lesson/create")]
-        public HttpResponseMessage PostLessonCreate(
-            [FromBody] int idUser,
-            [FromBody] string description,
-            [FromBody] DateTime end_date,
-            [FromBody] DateTime start_date,
-            [FromBody] int nb_free,
-            [FromBody] int nb_blocked,
-            [FromBody] float price,
-            [FromBody] int category,
-            [FromBody] string title,
-            [FromBody] string zip,
-            [FromBody] string address
+        public HttpResponseMessage PostLessonCreate([FromBody] Lesson l
              )
         {
             ILessonRepository lesson = new LessonRepository();
-            var result = lesson.Add(new Lesson(description, start_date, end_date, nb_free, nb_blocked, price, title, address, zip, category, idUser));
+            var result = lesson.Add(l);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
         [HttpPost]
         [Route("api/v1/lesson/update")]
-        public HttpResponseMessage PostLessonUpdate(
-            [FromBody] int idUser,
-            [FromBody] string description,
-            [FromBody] DateTime end_date,
-            [FromBody] DateTime start_date,
-            [FromBody] int nb_free,
-            [FromBody] int nb_blocked,
-            [FromBody] float price,
-            [FromBody] int category,
-            [FromBody] string title,
-            [FromBody] string zip,
-            [FromBody] string address
+        public HttpResponseMessage PostLessonUpdate([FromBody] Lesson l
+           
              )
         {
             ILessonRepository lesson = new LessonRepository();
-            var result = lesson.Update(new Lesson( description, start_date, end_date, nb_free, nb_blocked, price, title, address, zip, category, idUser));
+            var result = lesson.Update(l);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
         [HttpPost]
         [Route("api/v1/user/connect")]
-        public HttpResponseMessage PostUserConnect(
-           [FromBody] string email,
-           [FromBody] string password
+        public HttpResponseMessage PostUserConnect([FromBody] User u
             )
         {
             IUserRepository user = new UserRepository();
-            var result = user.GetId(email,password);
+            var result = user.GetId(u.Email,u.Password);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
         [HttpPost]
         [Route("api/v1/lesson/delete")]
-        public HttpResponseMessage PostLessonDelete([FromBody] int id)
+        public HttpResponseMessage PostLessonDelete([FromBody] Lesson l)
         {
             ILessonRepository lesson = new LessonRepository();
-            var result = lesson.Remove(id);
+            var result = lesson.Remove(l.LessonId);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
@@ -222,29 +184,31 @@ namespace Danse.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="message">id,user_id,subject,message</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("api/v1/messenger/send")]
-        public HttpResponseMessage PostMessengerSend(
-            [FromBody] int id,
-            [FromBody] int user_id,
-            [FromBody] string subject,
-            [FromBody] string message
+        public HttpResponseMessage PostMessengerSend([FromBody] Messenger message
             )
         {
-            Messenger userMessenge = new Messenger(subject,  message, id, user_id);
             MessengerRepository messenger = new MessengerRepository();
-            var result = messenger.Add(userMessenge);
+            var result = messenger.Add(message);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
         [HttpPost]
         [Route("api/v1/category/create")]
         public HttpResponseMessage PostCategoryCreate(
-           [FromBody] string name
+           [FromBody] Categorie categorie
             )
         {
+
             ICategorieRepository cat = new CategorieRepository();
-            var result = cat.Add(new Categorie(name));
+            var result = cat.Add(categorie.Name);
+
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
     }

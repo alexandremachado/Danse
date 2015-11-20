@@ -68,7 +68,7 @@ namespace Danse.Models.AccessBd
         /// </summary>
         /// <param name="cat">Catégorie à ajouter</param>
         /// <returns>Vrai si tous ce passe bien faux sinon</returns>
-        public bool Add(Categorie cat)
+        public bool Add(string cat)
         {
             if (cat == null)
             {
@@ -77,8 +77,7 @@ namespace Danse.Models.AccessBd
 
             string query = "INSERT INTO category (name) VALUES(@name)";
             List<MySqlParameter> parms = new List<MySqlParameter>();
-            parms.Add(new MySqlParameter("name", cat.Name));
-
+            parms.Add(new MySqlParameter("name", cat));
 
             MySqlHelper.ExecuteNonQuery(connexion, query, parms.ToArray());
 

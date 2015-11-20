@@ -9,7 +9,7 @@ namespace Danse.Models.Interfaces
     public interface ICategorieRepository
     {
         IEnumerable<Categorie> GetAll();
-        bool Add(Categorie cat);
+        bool Add(string cat);
         Categorie Get(int id);
         bool Remove(int id);
 
