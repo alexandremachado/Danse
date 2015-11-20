@@ -184,9 +184,13 @@ namespace Danse.Models.AccessBd
         /// <returns>Une liste de lesson</returns>
         public IEnumerable<Lesson> GetFilter(DateTime start,DateTime end, string zip)
         {
-            string query = "select l.id as id_lesson, description,nb_free,nb_booked,price,title,zip_code,adresse,lat,long,start_date,end_date,u.id as user_id, first_name,last_name,gender,birth_date,email,phone,image,status,c.name FROM lesson as l JOIN user as u ON u.id = l.user_id JOIN category as c ON c.id = l.category_id WHERE start_date >= "+start+" end_date <= "+end+" AND zip_code = "+zip;
+            string query = "select l.id as id_lesson, description,nb_free,nb_booked,price,title,zip_code,address,start_date,end_date,u.id as user_id, first_name,last_name,gender,birth_date,email,phone,image,c.name FROM lesson as l JOIN user as u ON u.id = l.user_id JOIN category as c ON c.id = l.category_id WHERE start_date >= @start AND end_date <= @end AND zip_code = @zip";
+            List<MySqlParameter> parms = new List<MySqlParameter>();
+            parms.Add(new MySqlParameter("start", start));
+            parms.Add(new MySqlParameter("end", end));
+            parms.Add(new MySqlParameter("zip", zip));
             List<Lesson> lessons = new List<Lesson>();
-            using (MySqlDataReader reader = MySqlHelper.ExecuteReader(connexion, query))
+            using (MySqlDataReader reader = MySqlHelper.ExecuteReader(connexion, query,parms.ToArray()))
             {
                 // Check if the reader returned any rows
                 if (reader.HasRows)
@@ -205,21 +209,19 @@ namespace Danse.Models.AccessBd
                         lesson.Title = reader.GetString(5);
                         lesson.ZipCode = reader.GetString(6);
                         lesson.Adresse = reader.GetString(7);
-                        lesson.Latitude = reader.GetFloat(8);
-                        lesson.Longitude = reader.GetFloat(9);
-                        lesson.DateStart = reader.GetDateTime(10);
-                        lesson.DateEnd = reader.GetDateTime(11);
+                        lesson.DateStart = reader.GetDateTime(8);
+                        lesson.DateEnd = reader.GetDateTime(9);
 
-                        author.UserId = reader.GetInt16(12);
-                        author.FirstName = reader.GetString(13);
-                        author.LastName = reader.GetString(14);
-                        author.Gender = reader.GetBoolean(15);
-                        author.BirthDate = reader.GetDateTime(16);
-                        author.Email = reader.GetString(17);
-                        author.Phone = reader.GetString(18);
-                        author.Image = reader.GetString(19);
+                        author.UserId = reader.GetInt16(10);
+                        author.FirstName = reader.GetString(11);
+                        author.LastName = reader.GetString(12);
+                        author.Gender = reader.GetBoolean(13);
+                        author.BirthDate = reader.GetDateTime(14);
+                        author.Email = reader.GetString(15);
+                        author.Phone = reader.GetString(16);
+                        author.Image = reader.GetString(17);
 
-                        cat.Name = reader.GetString(21);
+                        cat.Name = reader.GetString(18);
 
                         lesson.Author = author;
                         lesson.Categorie = cat;

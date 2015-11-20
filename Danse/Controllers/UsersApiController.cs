@@ -61,12 +61,10 @@ namespace Danse.Controllers
 
         [HttpGet]
         [Route("api/v1/lesson/filter/{start}/{end}/{zip}")]
-        public string GetLessonFilter(string start, string end, string zip)
+        public string GetLessonFilter(DateTime start, DateTime end, string zip)
         {
-            DateTime startDate = Convert.ToDateTime(start);
-            DateTime endDate = Convert.ToDateTime(end);
             ILessonRepository lesson = new LessonRepository();
-            var result = lesson.GetFilter(startDate, endDate, zip);
+            var result = lesson.GetFilter(start, end, zip);
             var json = new JavaScriptSerializer().Serialize(result);
             return json;
         }
