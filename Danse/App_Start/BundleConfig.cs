@@ -25,8 +25,6 @@ namespace Danse
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/fondation.min.css",
-                      "~/Content/fondation-icons.css",
                       "~/Content/jquery-ui.css",
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
