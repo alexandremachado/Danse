@@ -204,6 +204,7 @@
     <Compile Include="Models\AccessBd\MessengerRepository.cs" />
     <Compile Include="Models\AccessBd\UserRepository.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Entities\Booking.cs" />
     <Compile Include="Models\Entities\Categorie.cs" />
     <Compile Include="Models\Entities\Lesson.cs" />
     <Compile Include="Models\Entities\Messenger.cs" />
@@ -323,7 +324,7 @@
     <PropertyGroup>
       <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
     </PropertyGroup>
-	<PropertyGroup>
+    <PropertyGroup>
       <PostBuildEvent>
         if not exist "$(WebProjectOutputDir)\bin\Roslyn" md "$(WebProjectOutputDir)\bin\Roslyn"
         start /MIN xcopy /s /y /R "$(OutDir)roslyn\*.*" "$(WebProjectOutputDir)\bin\Roslyn"

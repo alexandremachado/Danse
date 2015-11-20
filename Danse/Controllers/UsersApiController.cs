@@ -173,14 +173,12 @@ namespace Danse.Controllers
 
         [HttpPost]
         [Route("api/v1/lesson/book/create")]
-        public HttpResponseMessage PostLessonBookCreate(
-            [FromBody] int idUser,
-            [FromBody] int idLesson
+        public HttpResponseMessage PostLessonBookCreate([FromBody] Booking b
              )
         {
 
             ILessonRepository lesson = new LessonRepository();
-            var result = lesson.Book(idUser, idLesson);
+            var result = lesson.Book(b.user_id, b.lesson_id);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
