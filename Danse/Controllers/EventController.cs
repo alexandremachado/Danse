@@ -6,24 +6,15 @@ using System.Web.Mvc;
 
 namespace Danse.Controllers
 {
-    public class HomeController : Controller
+    public class EventController : Controller
     {
-        public ActionResult Index()
+        public ActionResult List()
         {
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult See()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }
