@@ -128,13 +128,42 @@ namespace Danse.Models.AccessBd
         }
 
         /// <summary>
+        /// Vérifie que le mail n'existe pas déjà
+        /// </summary>
+        /// <param name="mail">mail entrer</param>
+        /// <returns>vrai si il existe faux sinon</returns>
+        public bool mailExist(string mail)
+        {
+            int nbEmail = 0;
+            string query = "SELECT count(email) FROM user WHERE email = @mail";
+
+            List<MySqlParameter> parms = new List<MySqlParameter>();
+            parms.Add(new MySqlParameter("mail", mail));
+            using (MySqlDataReader reader = MySqlHelper.ExecuteReader(connexion, query, parms.ToArray()))
+            {
+                // Check if the reader returned any rows
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        nbEmail = reader.GetInt16(0);
+                    }
+                }
+            }
+
+            return (nbEmail == 0)?false:true;
+
+        }
+
+
+        /// <summary>
         /// Ajout d'un utilisateur
         /// </summary>
         /// <param name="user">Utilisateur à ajouter</param>
         /// <returns>Vrai si tous c'est bien passé faux sinon</returns>
         public bool Add(User user)
         {
-            if(user == null)
+            if(user == null || mailExist(user.Email))
             {
                 return false;
             }

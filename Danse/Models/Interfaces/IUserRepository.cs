@@ -15,5 +15,6 @@ namespace Danse.Models.Interfaces
         bool Update(User user);
         bool Add(User user);
         int GetId(string mail, string pwd);
+        bool mailExist(string mail);
     }
 }
