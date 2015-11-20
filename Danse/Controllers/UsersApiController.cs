@@ -64,6 +64,36 @@ namespace Danse.Controllers
         }
 
         [HttpGet]
+        [Route("api/v1/lesson/{id}")]
+        public string GetLesson(int id)
+        {
+            ILessonRepository lesson = new LessonRepository();
+            var result = lesson.Get(id);
+            var json = new JavaScriptSerializer().Serialize(result);
+            return json;
+        }
+
+        [HttpGet]
+        [Route("api/v1/lesson/Category/{id}")]
+        public string GetLessonByCat(int id)
+        {
+            ILessonRepository lesson = new LessonRepository();
+            var result = lesson.GetLessonByCat(id);
+            var json = new JavaScriptSerializer().Serialize(result);
+            return json;
+        }
+
+        [HttpGet]
+        [Route("api/v1/lesson/futur/{id}")]
+        public string GetLessonFutur(int iduser)
+        {
+            ILessonRepository lesson = new LessonRepository();
+            var result = lesson.GetLessonByUserInFewTime(iduser);
+            var json = new JavaScriptSerializer().Serialize(result);
+            return json;
+        }
+
+        [HttpGet]
         [Route("api/v1/lesson/filter/{start}/{end}/{zip}")]
         public string GetLessonFilter(DateTime start, DateTime end, string zip)
         {
