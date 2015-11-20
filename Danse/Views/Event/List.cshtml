@@ -1,0 +1,77 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    $(document).ready(function () {
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 24,   
+            values: [9, 20],
+            slide: function (event, ui) {
+                $("#amount").val(ui.values[0] + "h - " + ui.values[1] + "h");
+            }
+        });
+        $("#amount").val($("#slider-range").slider("values", 0) +
+          "h - " + $("#slider-range").slider("values", 1) + "h");
+    });
+</script>
+
+<div class="container-fluid">
+    <div class="row border-event">
+        <div class="col-md-2" style="padding: 10px;">
+            <p>
+                <label for="amount">Heures de cours</label>
+                <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <div id="slider-range"></div>
+            <br />
+            <p>
+                <label for="amount">Elargir ma recherche</label>
+            </p>
+            <div class="radio">
+                <label><input type="radio" name="optdist">5 km</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="optdist">15 km</label>
+            </div>
+        </div>
+        <!-- foreach($events as $e){-->
+        <div class="col-md-2" style="padding: 10px;">
+            <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-rounded" />
+        </div>
+        <div class="col-md-8" style="padding: 10px; padding-top:0px;">
+            <dl class="dl-horizontal">
+                <dt>
+                    Description lists
+                </dt>
+                <dd>
+                    A description list is perfect for defining terms.
+                </dd>
+                <dt>
+                    Euismod
+                </dt>
+                <dd>
+                    Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.
+                </dd>
+                <dd>
+                    Donec id elit non mi porta gravida at eget metus.
+                </dd>
+                <dt>
+                    Malesuada porta
+                </dt>
+                <dd>
+                    Etiam porta sem malesuada magna mollis euismod.
+                </dd>
+                <dt>
+                    Felis euismod semper eget lacinia
+                </dt>
+                <dd>
+                    Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                </dd>
+            </dl>
+        </div>
+        <!-- } -->
+    </div>
+</div>
