@@ -36,8 +36,10 @@ namespace Danse.Models.AccessBd
                         user.Gender = reader.GetBoolean(3);
                         user.BirthDate = reader.GetDateTime(4);
                         user.Email = reader.GetString(5);
-                        user.Phone = reader.GetString(6);
-                        user.Image = reader.GetString(7);
+                        if(user.Phone != null)
+                          user.Phone = reader.GetString(6);
+                        if(user.Image != null)
+                            user.Image = reader.GetString(7);
                         user.Role = reader.GetInt16(8);
                         users.Add(user);
                     }
@@ -79,8 +81,10 @@ namespace Danse.Models.AccessBd
                         user.FirstName = reader.GetString(1);
                         user.LastName = reader.GetString(2);
                         user.Gender = reader.GetBoolean(3);
-                        user.Phone = reader.GetString(4);
-                        user.Image = reader.GetString(5);
+                        if(user.Phone != null)
+                            user.Phone = reader.GetString(4);
+                        if(user.Image != null)
+                          user.Image = reader.GetString(5);
                         user.Role = reader.GetInt16(6);
                     }
                 }
@@ -111,8 +115,10 @@ namespace Danse.Models.AccessBd
                         user.LastName = reader.GetString(2);
                         user.Email = reader.GetString(3);
                         user.Gender = reader.GetBoolean(4);
-                        user.Phone = reader.GetString(5);
-                        user.Image = reader.GetString(6);
+                        if(user.Phone != null)
+                          user.Phone = reader.GetString(5);
+                        if(user.Image != null)
+                          user.Image = reader.GetString(6);
                         user.Role = reader.GetInt16(7);
                     }
                 }
@@ -156,9 +162,13 @@ namespace Danse.Models.AccessBd
         public int GetId(string mail, string pwd)
         {
             int user = 0;
-            string query = "SELECT id FROM user WHERE mail = "+mail+" AND pwd = "+ CreateSHAHash(pwd);
+            string query = "SELECT id FROM user WHERE email = @email AND pwd = @pwd";
 
-            using (MySqlDataReader reader = MySqlHelper.ExecuteReader(connexion, query))
+            List<MySqlParameter> parms = new List<MySqlParameter>();
+            parms.Add(new MySqlParameter("email", mail));
+            parms.Add(new MySqlParameter("pwd", CreateSHAHash(pwd)));
+
+            using (MySqlDataReader reader = MySqlHelper.ExecuteReader(connexion, query,parms.ToArray()))
             {
                 // Check if the reader returned any rows
                 if (reader.HasRows)
