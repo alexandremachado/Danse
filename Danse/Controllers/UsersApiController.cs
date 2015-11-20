@@ -106,7 +106,7 @@ namespace Danse.Controllers
             [FromBody] string first_name,
             [FromBody] string last_name,
             [FromBody] bool gender,
-            [FromBody] DateTime birth_date,
+            [FromBody] string birth_date,
             [FromBody] string email,
             [FromBody] string phone,
             [FromBody] string password,
@@ -114,7 +114,8 @@ namespace Danse.Controllers
              )
         {
             IUserRepository user = new UserRepository();
-            var result = user.Add(new User(first_name, last_name, gender, birth_date, email, phone, password, image));
+            DateTime birthdate = Convert.ToDateTime(birth_date);
+            var result = user.Add(new User(first_name, last_name, gender, birthdate, email, phone, password, image));
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
         
@@ -124,7 +125,7 @@ namespace Danse.Controllers
             [FromBody] string first_name,
             [FromBody] string last_name,
             [FromBody] bool gender,
-            [FromBody] DateTime birth_date,
+            [FromBody] string birth_date,
             [FromBody] string email,
             [FromBody] string phone,
             [FromBody] string password,
@@ -132,7 +133,8 @@ namespace Danse.Controllers
              )
         {
             IUserRepository user = new UserRepository();
-            var result = user.Update(new User(first_name, last_name, gender, birth_date, email, phone, password, image));
+            DateTime birthdate = Convert.ToDateTime(birth_date);
+            var result = user.Update(new User(first_name, last_name, gender, birthdate, email, phone, password, image));
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
         
@@ -151,8 +153,8 @@ namespace Danse.Controllers
         public HttpResponseMessage PostLessonCreate(
             [FromBody] int idUser,
             [FromBody] string description,
-            [FromBody] DateTime end_date,
-            [FromBody] DateTime start_date,
+            [FromBody] string end_date,
+            [FromBody] string start_date,
             [FromBody] int nb_free,
             [FromBody] int nb_blocked,
             [FromBody] float price,
@@ -163,7 +165,12 @@ namespace Danse.Controllers
              )
         {
             ILessonRepository lesson = new LessonRepository();
-            var result = lesson.Add(new Lesson(description, start_date, end_date, nb_free, nb_blocked, price, title, address, zip, category, idUser));
+            //DateTime c_end_date = DateTime.ParseExact(end_date, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+            //DateTime c_start_date = DateTime.ParseExact(start_date, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime startdate = Convert.ToDateTime(start_date);
+            DateTime enddate = Convert.ToDateTime(end_date);
+
+            var result = lesson.Add(new Lesson(description, startdate, enddate, nb_free, nb_blocked, price, title, address, zip, category, idUser));
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
@@ -172,8 +179,8 @@ namespace Danse.Controllers
         public HttpResponseMessage PostLessonUpdate(
             [FromBody] int idUser,
             [FromBody] string description,
-            [FromBody] DateTime end_date,
-            [FromBody] DateTime start_date,
+            [FromBody] string end_date,
+            [FromBody] string start_date,
             [FromBody] int nb_free,
             [FromBody] int nb_blocked,
             [FromBody] float price,
@@ -184,7 +191,12 @@ namespace Danse.Controllers
              )
         {
             ILessonRepository lesson = new LessonRepository();
-            var result = lesson.Update(new Lesson( description, start_date, end_date, nb_free, nb_blocked, price, title, address, zip, category, idUser));
+            //DateTime c_end_date = DateTime.ParseExact(end_date, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+            //DateTime c_start_date = DateTime.ParseExact(start_date, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime startdate = Convert.ToDateTime(start_date);
+            DateTime enddate = Convert.ToDateTime(end_date);
+
+            var result = lesson.Update(new Lesson( description, startdate, enddate, nb_free, nb_blocked, price, title, address, zip, category, idUser));
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
