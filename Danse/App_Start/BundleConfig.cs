@@ -24,7 +24,7 @@ namespace Danse
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/Content").Include(
                       "~/Content/jquery-ui.css",
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
