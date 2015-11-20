@@ -2,11 +2,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@{
-    var sourceDomain = Request.Headers["Origin"]; //This gives the origin domain for the request
-    Response.AppendHeader("Access-Control-Allow-Origin", sourceDomain );
-}
-
 <script>
     $(document).ready(function () {
         $("#slider-range").slider({
