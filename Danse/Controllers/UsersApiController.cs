@@ -74,6 +74,16 @@ namespace Danse.Controllers
         }
 
         [HttpGet]
+        [Route("api/v1/lesson/all")]
+        public string GetAllLesson(int id)
+        {
+            ILessonRepository lesson = new LessonRepository();
+            var result = lesson.GetAll();
+            var json = new JavaScriptSerializer().Serialize(result);
+            return json;
+        }
+
+        [HttpGet]
         [Route("api/v1/lesson/Category/{id}")]
         public string GetLessonByCat(int id)
         {
