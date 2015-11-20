@@ -16,6 +16,21 @@
         $("#amount").val($("#slider-range").slider("values", 0) +
           "h - " + $("#slider-range").slider("values", 1) + "h");
     });
+
+    var url = 'http://danse.apphb.com/api/v1/lesson/user/1';
+    //alert(WebClient().DownloadString(url));
+    $(document).ready(function () {
+        // Send an AJAX request
+        $.getJSON(url)
+            .done(function (data) {
+                // On success, 'data' contains a list of products.
+                /*$.each(data, function (key, item) {
+                    // Add a list item for the product.
+                    var 
+                });*/
+                alert('data get');
+            });
+    });
 </script>
 
 <div class="container-fluid">
