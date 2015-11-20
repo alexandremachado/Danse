@@ -1,4 +1,5 @@
-﻿using Danse.Models.Entities;
+﻿using Danse.App_Start;
+using Danse.Models.Entities;
 using Danse.Models.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
@@ -362,6 +363,7 @@ namespace Danse.Models.AccessBd
         /// <returns>Vrai si tout c'est bien passer, fauw sinon</returns>
         public bool Book(int userId, int lessonId)
         {
+            string email = null;
             UserRepository _repositoryUser = new UserRepository();
             if(_repositoryUser.GetPublic(userId).FirstName != "" && this.Get(lessonId).Title != "")
             {
@@ -381,7 +383,22 @@ namespace Danse.Models.AccessBd
 
                 MySqlHelper.ExecuteNonQuery(connexion, queryIncrementeLesson, parmsIncre.ToArray());
 
+                string queryUserForEmail = "SELECT email FROM user WHERE id ="+userId;
 
+                using (MySqlDataReader reader = MySqlHelper.ExecuteReader(connexion, queryUserForEmail))
+                {
+                    // Check if the reader returned any rows
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        { 
+                            email = reader.GetString(0);
+                        }
+                    }
+                }
+
+                Mail send = new Mail();
+                send.SendSimpleMessage(email, "Inscription à une leçon", "Vous êtes maintenant inscrit à une leçon");
                 return true;
             }
             return false;

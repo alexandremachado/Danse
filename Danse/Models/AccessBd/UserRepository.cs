@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Net;
+using Danse.App_Start;
 
 namespace Danse.Models.AccessBd
 {
@@ -144,9 +145,10 @@ namespace Danse.Models.AccessBd
             parms.Add(new MySqlParameter("image", user.Image));
             parms.Add(new MySqlParameter("role", user.Role));
 
-
             MySqlHelper.ExecuteNonQuery(connexion, query, parms.ToArray());
 
+            Mail send = new Mail();
+            send.SendSimpleMessage(user.Email,"Inscription","Vous êtes maintenant inscrit à dance coach");
 
             return true;
         }
