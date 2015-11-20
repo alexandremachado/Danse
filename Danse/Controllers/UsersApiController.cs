@@ -18,7 +18,11 @@ namespace Danse.Controllers
 
     public class APIController : ApiController
     {
-
+        /// <summary>
+        /// Retourne le profil public d'un utilisteur
+        /// </summary>
+        /// <param name="id">id utilisateur</param>
+        /// <returns>Utilisateur</returns>
         [HttpGet]
         [Route("api/v1/user/public/{id}")]
         public string GetUserPublic(int id)
@@ -101,82 +105,81 @@ namespace Danse.Controllers
 
        [HttpPost]
        [Route("api/v1/user/create")]
-        public HttpResponseMessage PostUserCreate([FromBody] User u
+        public HttpResponseMessage PostUserCreate([FromBody] User user
              )
         {
-            IUserRepository user = new UserRepository();
-            var result = user.Add(u);
+            IUserRepository manageUser = new UserRepository();
+            var result = manageUser.Add(user);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
         
        [HttpPost]
        [Route("api/v1/user/update")]
-        public HttpResponseMessage PostUserUpdate([FromBody] User u
+        public HttpResponseMessage PostUserUpdate([FromBody] User user
              )
         {
-            IUserRepository user = new UserRepository();
-            var result = user.Update(u);
+            IUserRepository manageUser = new UserRepository();
+            var result = manageUser.Update(user);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
         
 
         [HttpPost]
         [Route("api/v1/user/delete")]
-        public HttpResponseMessage PostUserDelete([FromBody] User u)
+        public HttpResponseMessage PostUserDelete([FromBody] User user)
         {
-            IUserRepository user = new UserRepository();
-            var result = user.Remove(u.UserId);
+            IUserRepository managerUser = new UserRepository();
+            var result = managerUser.Remove(user.UserId);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
         [HttpPost]
         [Route("api/v1/lesson/create")]
-        public HttpResponseMessage PostLessonCreate([FromBody] Lesson l
+        public HttpResponseMessage PostLessonCreate([FromBody] Lesson lesson
              )
         {
-            ILessonRepository lesson = new LessonRepository();
-            var result = lesson.Add(l);
+            ILessonRepository manageLesson = new LessonRepository();
+            var result = manageLesson.Add(lesson);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
         [HttpPost]
         [Route("api/v1/lesson/update")]
-        public HttpResponseMessage PostLessonUpdate([FromBody] Lesson l
+        public HttpResponseMessage PostLessonUpdate([FromBody] Lesson lesson
            
              )
         {
-            ILessonRepository lesson = new LessonRepository();
-            var result = lesson.Update(l);
+            ILessonRepository manageLesson = new LessonRepository();
+            var result = manageLesson.Update(lesson);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
         [HttpPost]
         [Route("api/v1/user/connect")]
-        public HttpResponseMessage PostUserConnect([FromBody] User u
+        public HttpResponseMessage PostUserConnect([FromBody] User user
             )
         {
-            IUserRepository user = new UserRepository();
-            var result = user.GetId(u.Email,u.Password);
+            IUserRepository manageUser = new UserRepository();
+            var result = manageUser.GetId(user.Email, user.Password);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
         [HttpPost]
         [Route("api/v1/lesson/delete")]
-        public HttpResponseMessage PostLessonDelete([FromBody] Lesson l)
+        public HttpResponseMessage PostLessonDelete([FromBody] Lesson lesson)
         {
-            ILessonRepository lesson = new LessonRepository();
-            var result = lesson.Remove(l.LessonId);
+            ILessonRepository manageLesson = new LessonRepository();
+            var result = manageLesson.Remove(lesson.LessonId);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
         [HttpPost]
         [Route("api/v1/lesson/book/create")]
-        public HttpResponseMessage PostLessonBookCreate([FromBody] Booking b
+        public HttpResponseMessage PostLessonBookCreate([FromBody] Booking booking
              )
         {
-
             ILessonRepository lesson = new LessonRepository();
-            var result = lesson.Book(b.user_id, b.lesson_id);
+            var result = lesson.Book(booking.user_id, booking.lesson_id);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
