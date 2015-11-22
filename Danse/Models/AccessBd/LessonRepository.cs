@@ -52,9 +52,9 @@ namespace Danse.Models.AccessBd
                         author.Gender = reader.GetBoolean(15);
                         author.BirthDate = reader.GetDateTime(16);
                         author.Email = reader.GetString(17);
-                        author.Phone = reader.GetString(18);
+                        author.Phone = reader.GetValue(18).ToString();
                         author.Password = reader.GetString(19);
-                        author.Image = reader.GetString(20);
+                        author.Image = reader.GetValue(20).ToString();
 
                         cat.Name = reader.GetString(22);
 
@@ -75,7 +75,7 @@ namespace Danse.Models.AccessBd
         /// <returns>Une lesson</returns>
         public Lesson Get(int id)
         {
-            string query = "select l.id as id_lesson, description,nb_free,nb_booked,price,title,zip_code,adresse,lat,long,start_date,end_date,u.id as user_id, first_name,last_name,gender,birth_date,email,phone,pwd,image,status,c.name FROM lesson as l JOIN user as u ON u.id = l.user_id JOIN category as c ON c.id = l.category_id WHERE l.id = "+id;
+            string query = "select l.id as id_lesson, description,nb_free,nb_booked,price,title,zip_code,address,start_date,end_date,u.id as user_id, first_name,last_name,gender,birth_date,email,phone,pwd,image,c.name FROM lesson as l JOIN user as u ON u.id = l.user_id JOIN category as c ON c.id = l.category_id WHERE l.id = "+id;
             Lesson lesson = new Lesson();
             User author = new User();
             Categorie cat = new Categorie();
@@ -96,22 +96,20 @@ namespace Danse.Models.AccessBd
                         lesson.Title = reader.GetString(5);
                         lesson.ZipCode = reader.GetString(6);
                         lesson.Adresse = reader.GetString(7);
-                        lesson.Latitude = reader.GetFloat(8);
-                        lesson.Longitude = reader.GetFloat(9);
-                        lesson.DateStart = reader.GetDateTime(10);
-                        lesson.DateEnd = reader.GetDateTime(11);
+                        lesson.DateStart = reader.GetDateTime(8);
+                        lesson.DateEnd = reader.GetDateTime(9);
 
-                        author.UserId = reader.GetInt16(12);
-                        author.FirstName = reader.GetString(13);
-                        author.LastName = reader.GetString(14);
-                        author.Gender = reader.GetBoolean(15);
-                        author.BirthDate = reader.GetDateTime(16);
-                        author.Email = reader.GetString(17);
-                        author.Phone = reader.GetString(18);
-                        author.Password = reader.GetString(19);
-                        author.Image = reader.GetString(20);
+                        author.UserId = reader.GetInt16(10);
+                        author.FirstName = reader.GetString(11);
+                        author.LastName = reader.GetString(12);
+                        author.Gender = reader.GetBoolean(13);
+                        author.BirthDate = reader.GetDateTime(14);
+                        author.Email = reader.GetString(15);
+                        author.Phone = reader.GetValue(16).ToString();
+                        author.Password = reader.GetString(17);
+                        author.Image = reader.GetValue(18).ToString();
 
-                        cat.Name = reader.GetString(22);
+                        cat.Name = reader.GetString(19);
 
                         lesson.Author = author;
                         lesson.Categorie = cat;
@@ -218,8 +216,8 @@ namespace Danse.Models.AccessBd
                         author.Gender = reader.GetBoolean(13);
                         author.BirthDate = reader.GetDateTime(14);
                         author.Email = reader.GetString(15);
-                        author.Phone = reader.GetString(16);
-                        author.Image = reader.GetString(17);
+                        author.Phone = reader.GetValue(16).ToString();
+                        author.Image = reader.GetValue(17).ToString();
 
                         cat.Name = reader.GetString(18);
 
@@ -254,7 +252,7 @@ namespace Danse.Models.AccessBd
 
                         user.UserId = reader.GetInt16(0);
                         user.Email = reader.GetString(1);
-                        user.Image = reader.GetString(2);
+                        user.Image = reader.GetValue(2).ToString();
                         user.LastName = reader.GetString(3);
                         user.FirstName = reader.GetString(4);
                        
@@ -302,7 +300,7 @@ namespace Danse.Models.AccessBd
                             author.UserId = reader.GetInt16(7);
                             author.FirstName = reader.GetString(8);
                             author.LastName = reader.GetString(9);
-                            author.Image = reader.GetString(10);
+                            author.Image = reader.GetValue(10).ToString();
 
                             lesson.Author = author;
                             lesson.Categorie = cat;
@@ -345,7 +343,7 @@ namespace Danse.Models.AccessBd
                         author.UserId = reader.GetInt16(7);
                         author.FirstName = reader.GetString(8);
                         author.LastName = reader.GetString(9);
-                        author.Image = reader.GetString(10);
+                        author.Image = reader.GetValue(10).ToString();
 
                         lesson.Author = author;
                         lesson.Categorie = cat;
@@ -473,7 +471,7 @@ namespace Danse.Models.AccessBd
                             author.UserId = reader.GetInt16(7);
                             author.FirstName = reader.GetString(8);
                             author.LastName = reader.GetString(9);
-                            author.Image = reader.GetString(10);
+                            author.Image = reader.GetValue(10).ToString();
 
                             lesson.Author = author;
                             lesson.Categorie = cat;
