@@ -122,7 +122,17 @@ namespace Danse.Controllers
             var json = new JavaScriptSerializer().Serialize(result);
             return json;
         }
-        
+
+        [HttpGet]
+        [Route("api/v1/lesson/filter/cat/{start}/{end}/{cat}")]
+        public string GetLessonFilterByCat(DateTime start, DateTime end, int cat)
+        {
+            ILessonRepository lesson = new LessonRepository();
+            var result = lesson.GetFilterByCat(start, end, cat);
+            var json = new JavaScriptSerializer().Serialize(result);
+            return json;
+        }
+
         [HttpGet]
         [Route("api/v1/lesson/book/{id}")]
         public string GetLessonBook(int id)
