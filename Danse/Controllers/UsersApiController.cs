@@ -243,6 +243,16 @@ namespace Danse.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
+        [HttpPost]
+        [Route("api/v1/user/email")]
+        public string GetUserByMail([FromBody] User user)
+        {
+            IUserRepository manageUser = new UserRepository();
+            var result = manageUser.GetUserByMail(user.Email);
+            var json = new JavaScriptSerializer().Serialize(result);
+            return json;
+        }
+
 
         /// <summary>
         /// 

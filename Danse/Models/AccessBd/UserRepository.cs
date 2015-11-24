@@ -34,7 +34,7 @@ namespace Danse.Models.AccessBd
                         user.FirstName = reader.GetString(1);
                         user.LastName = reader.GetString(2);
                         user.Gender = reader.GetBoolean(3);
-                        user.BirthDate = reader.GetDateTime(4).ToString("MM/dd/yyyy HH:mm"); ;
+                        user.BirthDate = reader.GetDateTime(4).ToString("MM/dd/yyyy HH:mm"); 
                         user.Email = reader.GetString(5);
                         if(user.Phone != null)
                           user.Phone = reader.GetString(6);
@@ -86,6 +86,38 @@ namespace Danse.Models.AccessBd
                         if(user.Image != null)
                           user.Image = reader.GetString(5);
                         user.Role = reader.GetInt16(6);
+                    }
+                }
+            }
+
+            return user;
+        }
+
+        public User GetUserByMail(string mail)
+        {
+            User user = new User();
+            string query = "Select id,first_name,last_name,email,gender,birth_date,phone,image,role from user where email = @mail";
+
+            List<MySqlParameter> parms = new List<MySqlParameter>();
+            parms.Add(new MySqlParameter("mail", mail));
+            using (MySqlDataReader reader = MySqlHelper.ExecuteReader(connexion, query,parms.ToArray()))
+            {
+                // Check if the reader returned any rows
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        user.UserId = reader.GetInt16(0);
+                        user.FirstName = reader.GetString(1);
+                        user.LastName = reader.GetString(2);
+                        user.Email = reader.GetString(3);
+                        user.Gender = reader.GetBoolean(4);
+                        user.BirthDate = reader.GetDateTime(5).ToString("MM/dd/yyyy HH:mm");
+                        if (user.Phone != null)
+                            user.Phone = reader.GetString(6);
+                        if (user.Image != null)
+                            user.Image = reader.GetString(7);
+                        user.Role = reader.GetInt16(8);
                     }
                 }
             }
