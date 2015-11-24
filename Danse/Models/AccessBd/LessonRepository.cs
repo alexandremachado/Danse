@@ -41,14 +41,14 @@ namespace Danse.Models.AccessBd
                         lesson.Title = reader.GetString(5);
                         lesson.ZipCode = reader.GetString(6);
                         lesson.Adresse = reader.GetString(7);
-                        lesson.DateStart = reader.GetDateTime(8);
-                        lesson.DateEnd = reader.GetDateTime(9);
+                        lesson.DateStart = reader.GetDateTime(8).ToString("MM/dd/yyyy HH:mm");
+                        lesson.DateEnd = reader.GetDateTime(9).ToString("MM/dd/yyyy HH:mm");
 
                         author.UserId = reader.GetInt16(10);
                         author.FirstName = reader.GetString(11);
                         author.LastName = reader.GetString(12);
                         author.Gender = reader.GetBoolean(13);
-                        author.BirthDate = reader.GetDateTime(14);
+                        author.BirthDate = reader.GetDateTime(14).ToString("MM/dd/yyyy HH:mm");
                         author.Email = reader.GetString(15);
                         author.Phone = reader.GetValue(16).ToString();
                         author.Password = reader.GetString(17);
@@ -94,14 +94,14 @@ namespace Danse.Models.AccessBd
                         lesson.Title = reader.GetString(5);
                         lesson.ZipCode = reader.GetString(6);
                         lesson.Adresse = reader.GetString(7);
-                        lesson.DateStart = reader.GetDateTime(8);
-                        lesson.DateEnd = reader.GetDateTime(9);
+                        lesson.DateStart = reader.GetDateTime(8).ToString("MM/dd/yyyy HH:mm");
+                        lesson.DateEnd = reader.GetDateTime(9).ToString("MM/dd/yyyy HH:mm");
 
                         author.UserId = reader.GetInt16(10);
                         author.FirstName = reader.GetString(11);
                         author.LastName = reader.GetString(12);
                         author.Gender = reader.GetBoolean(13);
-                        author.BirthDate = reader.GetDateTime(14);
+                        author.BirthDate = reader.GetDateTime(14).ToString("MM/dd/yyyy HH:mm");
                         author.Email = reader.GetString(15);
                         author.Phone = reader.GetValue(16).ToString();
                         author.Password = reader.GetString(17);
@@ -205,14 +205,14 @@ namespace Danse.Models.AccessBd
                         lesson.Title = reader.GetString(5);
                         lesson.ZipCode = reader.GetString(6);
                         lesson.Adresse = reader.GetString(7);
-                        lesson.DateStart = reader.GetDateTime(8);
-                        lesson.DateEnd = reader.GetDateTime(9);
+                        lesson.DateStart = reader.GetDateTime(8).ToString("MM/dd/yyyy HH:mm");
+                        lesson.DateEnd = reader.GetDateTime(9).ToString("MM/dd/yyyy HH:mm");
 
                         author.UserId = reader.GetInt16(10);
                         author.FirstName = reader.GetString(11);
                         author.LastName = reader.GetString(12);
                         author.Gender = reader.GetBoolean(13);
-                        author.BirthDate = reader.GetDateTime(14);
+                        author.BirthDate = reader.GetDateTime(14).ToString("MM/dd/yyyy HH:mm"); 
                         author.Email = reader.GetString(15);
                         author.Phone = reader.GetValue(16).ToString();
                         author.Image = reader.GetValue(17).ToString();
@@ -263,14 +263,14 @@ namespace Danse.Models.AccessBd
                         lesson.Title = reader.GetString(5);
                         lesson.ZipCode = reader.GetString(6);
                         lesson.Adresse = reader.GetString(7);
-                        lesson.DateStart = reader.GetDateTime(8);
-                        lesson.DateEnd = reader.GetDateTime(9);
+                        lesson.DateStart = reader.GetDateTime(8).ToString("MM/dd/yyyy HH:mm");
+                        lesson.DateEnd = reader.GetDateTime(9).ToString("MM/dd/yyyy HH:mm");
 
                         author.UserId = reader.GetInt16(10);
                         author.FirstName = reader.GetString(11);
                         author.LastName = reader.GetString(12);
                         author.Gender = reader.GetBoolean(13);
-                        author.BirthDate = reader.GetDateTime(14);
+                        author.BirthDate = reader.GetDateTime(14).ToString("MM/dd/yyyy HH:mm");
                         author.Email = reader.GetString(15);
                         author.Phone = reader.GetValue(16).ToString();
                         author.Image = reader.GetValue(17).ToString();
@@ -350,8 +350,8 @@ namespace Danse.Models.AccessBd
                             lesson.Price = reader.GetFloat(2);
                             lesson.Title = reader.GetString(3);
                             cat.Name = reader.GetString(4);
-                            lesson.DateStart = reader.GetDateTime(5);
-                            lesson.DateEnd = reader.GetDateTime(6);
+                            lesson.DateStart = reader.GetDateTime(5).ToString("MM/dd/yyyy HH:mm");
+                            lesson.DateEnd = reader.GetDateTime(6).ToString("MM/dd/yyyy HH:mm");
 
                             author.UserId = reader.GetInt16(7);
                             author.FirstName = reader.GetString(8);
@@ -393,8 +393,8 @@ namespace Danse.Models.AccessBd
                         lesson.Price = reader.GetFloat(2);
                         lesson.Title = reader.GetString(3);
                         cat.Name = reader.GetString(4);
-                        lesson.DateStart = reader.GetDateTime(5);
-                        lesson.DateEnd = reader.GetDateTime(6);
+                        lesson.DateStart = reader.GetDateTime(5).ToString("MM/dd/yyyy HH:mm");
+                        lesson.DateEnd = reader.GetDateTime(6).ToString("MM/dd/yyyy HH:mm");
 
                         author.UserId = reader.GetInt16(7);
                         author.FirstName = reader.GetString(8);
@@ -521,8 +521,8 @@ namespace Danse.Models.AccessBd
                             lesson.Price = reader.GetFloat(2);
                             lesson.Title = reader.GetString(3);
                             cat.Name = reader.GetString(4);
-                            lesson.DateStart = reader.GetDateTime(5);
-                            lesson.DateEnd = reader.GetDateTime(6);
+                            lesson.DateStart = reader.GetDateTime(5).ToString("MM/dd/yyyy HH:mm");
+                            lesson.DateEnd = reader.GetDateTime(6).ToString("MM/dd/yyyy HH:mm");
 
                             author.UserId = reader.GetInt16(7);
                             author.FirstName = reader.GetString(8);

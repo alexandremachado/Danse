@@ -18,7 +18,7 @@ namespace Danse.Models.Entities
         [Required]
         public bool Gender { get; set; }
         [Required]
-        public DateTime BirthDate { get; set;}
+        public string BirthDate { get; set;}
         [Required]
         public string Email { get; set; }
         public string Phone { get; set; }
@@ -38,7 +38,7 @@ namespace Danse.Models.Entities
             this.FirstName = first;
             this.LastName = last;
             this.Gender = Gender;
-            this.BirthDate = BirthDate;
+            this.BirthDate = BirthDate.ToString("MM/dd/yyyy HH:mm"); ;
             this.Email = email;
             this.Phone = phone;
             this.Password = password;

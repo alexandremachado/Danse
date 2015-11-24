@@ -14,9 +14,9 @@ namespace Danse.Models.Entities
         [Required]
         public string description { get; set; }
         [Required]
-        public DateTime DateStart { get; set; }
+        public string DateStart { get; set; }
         [Required]
-        public DateTime DateEnd { get; set; }
+        public string DateEnd { get; set; }
         [Required]
         public int NumberFree{get; set;}
         public int NumberBooked { get; set; }
@@ -49,8 +49,8 @@ namespace Danse.Models.Entities
         public Lesson(string description, DateTime start,DateTime end, int free,int booked, float price, string title,string adresse, string code, int userid, int  idcat)
         {
             this.description = description;
-            this.DateEnd = end;
-            this.DateStart = start;
+            this.DateEnd = end.ToString("MM/dd/yyyy HH:mm"); ;
+            this.DateStart = start.ToString("MM/dd/yyyy HH:mm"); ;
             this.NumberFree = free;
             this.NumberBooked = booked;
             this.Price = price;

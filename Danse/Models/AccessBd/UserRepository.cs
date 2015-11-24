@@ -34,7 +34,7 @@ namespace Danse.Models.AccessBd
                         user.FirstName = reader.GetString(1);
                         user.LastName = reader.GetString(2);
                         user.Gender = reader.GetBoolean(3);
-                        user.BirthDate = reader.GetDateTime(4);
+                        user.BirthDate = reader.GetDateTime(4).ToString("MM/dd/yyyy HH:mm"); ;
                         user.Email = reader.GetString(5);
                         if(user.Phone != null)
                           user.Phone = reader.GetString(6);
