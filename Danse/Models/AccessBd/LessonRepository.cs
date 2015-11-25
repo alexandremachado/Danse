@@ -48,7 +48,6 @@ namespace Danse.Models.AccessBd
                         author.FirstName = reader.GetString(11);
                         author.LastName = reader.GetString(12);
                         author.Gender = reader.GetBoolean(13);
-                        author.BirthDate = reader.GetDateTime(14).ToString("MM/dd/yyyy HH:mm");
                         author.Email = reader.GetString(15);
                         author.Phone = reader.GetValue(16).ToString();
                         author.Password = reader.GetString(17);
@@ -101,7 +100,6 @@ namespace Danse.Models.AccessBd
                         author.FirstName = reader.GetString(11);
                         author.LastName = reader.GetString(12);
                         author.Gender = reader.GetBoolean(13);
-                        author.BirthDate = reader.GetDateTime(14).ToString("MM/dd/yyyy HH:mm");
                         author.Email = reader.GetString(15);
                         author.Phone = reader.GetValue(16).ToString();
                         author.Password = reader.GetString(17);
@@ -212,7 +210,6 @@ namespace Danse.Models.AccessBd
                         author.FirstName = reader.GetString(11);
                         author.LastName = reader.GetString(12);
                         author.Gender = reader.GetBoolean(13);
-                        author.BirthDate = reader.GetDateTime(14).ToString("MM/dd/yyyy HH:mm"); 
                         author.Email = reader.GetString(15);
                         author.Phone = reader.GetValue(16).ToString();
                         author.Image = reader.GetValue(17).ToString();
@@ -270,7 +267,6 @@ namespace Danse.Models.AccessBd
                         author.FirstName = reader.GetString(11);
                         author.LastName = reader.GetString(12);
                         author.Gender = reader.GetBoolean(13);
-                        author.BirthDate = reader.GetDateTime(14).ToString("MM/dd/yyyy HH:mm");
                         author.Email = reader.GetString(15);
                         author.Phone = reader.GetValue(16).ToString();
                         author.Image = reader.GetValue(17).ToString();

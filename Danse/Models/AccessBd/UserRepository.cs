@@ -34,12 +34,9 @@ namespace Danse.Models.AccessBd
                         user.FirstName = reader.GetString(1);
                         user.LastName = reader.GetString(2);
                         user.Gender = reader.GetBoolean(3);
-                        user.BirthDate = reader.GetDateTime(4).ToString("MM/dd/yyyy HH:mm"); 
                         user.Email = reader.GetString(5);
-                        if(user.Phone != null)
-                          user.Phone = reader.GetString(6);
-                        if(user.Image != null)
-                            user.Image = reader.GetString(7);
+                        user.Phone = reader.GetValue(6).ToString();
+                        user.Image = reader.GetValue(7).ToString();
                         user.Role = reader.GetInt16(8);
                         users.Add(user);
                     }
@@ -81,10 +78,8 @@ namespace Danse.Models.AccessBd
                         user.FirstName = reader.GetString(1);
                         user.LastName = reader.GetString(2);
                         user.Gender = reader.GetBoolean(3);
-                        if(user.Phone != null)
-                            user.Phone = reader.GetString(4);
-                        if(user.Image != null)
-                          user.Image = reader.GetString(5);
+                        user.Phone = reader.GetValue(4).ToString();
+                        user.Image = reader.GetValue(5).ToString();
                         user.Role = reader.GetInt16(6);
                     }
                 }
@@ -112,11 +107,8 @@ namespace Danse.Models.AccessBd
                         user.LastName = reader.GetString(2);
                         user.Email = reader.GetString(3);
                         user.Gender = reader.GetBoolean(4);
-                        user.BirthDate = reader.GetDateTime(5).ToString("MM/dd/yyyy HH:mm");
-                        if (user.Phone != null)
-                            user.Phone = reader.GetString(6);
-                        if (user.Image != null)
-                            user.Image = reader.GetString(7);
+                        user.Phone = reader.GetValue(6).ToString();
+                        user.Image = reader.GetValue(7).ToString();
                         user.Role = reader.GetInt16(8);
                     }
                 }
@@ -147,10 +139,8 @@ namespace Danse.Models.AccessBd
                         user.LastName = reader.GetString(2);
                         user.Email = reader.GetString(3);
                         user.Gender = reader.GetBoolean(4);
-                        if(user.Phone != null)
-                          user.Phone = reader.GetString(5);
-                        if(user.Image != null)
-                          user.Image = reader.GetString(6);
+                        user.Phone = reader.GetValue(5).ToString();
+                        user.Image = reader.GetValue(6).ToString();
                         user.Role = reader.GetInt16(7);
                     }
                 }
